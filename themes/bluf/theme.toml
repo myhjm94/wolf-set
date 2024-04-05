@@ -3,13 +3,13 @@
 
 name = "bluf"
 license = "GPLv3"
-licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE"
+licenselink = "https://isotope.metafizzy.co/license"
 description = "Minimalist Waterfall Cards Single Page Theme"
-homepage = "http://example.com/"
-tags = []
-features = []
+homepage = "https://github.com/0000cd/wolf-set"
+tags = [minimal, portfolio, responsive, light, landing, gallery]
+features = [waterfall, links]
 min_version = "0.117.0"
 
 [author]
-  name = ""
-  homepage = ""
+  name = "逊狼"
+  homepage = "https://github.com/vicevolf"
