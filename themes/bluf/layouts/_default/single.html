@@ -31,7 +31,7 @@
                 {{ with .Site.Data.navbar.external_links }}
                 <div class="menu-container">
                     {{ range . }}
-                    <a href="{{ .url }}" target="_blank" class="menu-toggle">{{ .name }}</a>
+                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener">{{ .name }}</a>
                     {{ end }}
                 </div>
                 {{ end }}
