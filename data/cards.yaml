@@ -1,0 +1,25 @@
+- title: "Card Title P"
+  image: https://via.placeholder.com/330x150
+  color: "red"
+  tags:
+    - "Tag1"
+    - "你好"
+  date: "24-01"
+  description: "Description for card 1.The quick brown fox jumps over the lazy dog"
+  links:
+    - name: "Link 1 Name"
+      url: "http://link1.com"
+    - name: "Link 2 Name"
+      url: "http://link2.com"
+
+- title: "Card Title 你好"
+  image: 
+  tags:
+    - "Tag1"
+    - "Tag2"
+  # date: "2024-01-01"
+  description: 在文件尺寸和质量之间选择完美平衡，并且可获取完整在线预览。您的图像从不会离开您的浏览器。
+  links:
+    - name: "Link 1 Name"
+      url: "http://link1.com"
+# ... 其他卡片配置 ...

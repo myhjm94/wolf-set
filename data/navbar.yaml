@@ -1,0 +1,18 @@
+categories:
+  - id: "1"
+    name: "分类1"
+    tags:
+      - "Metal"
+      - "Transition"
+      - "Alkali"
+  - id: "2"
+    name: "分类2"
+    tags:
+      - "Metal"
+      - "Transition"
+      - "Alkali"
+      # ... 根据需要添加更多标签 ...
+
+external_links:
+  - url: "https://example.com/about"
+    name: "关于"

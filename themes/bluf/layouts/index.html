@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Params.description }}" />
+    <meta name="keywords" content="{{ range .Site.Params.keywords }}{{ . }},{{ end }}" />
+    <meta name="author" content="{{ .Site.Params.author }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-title">
+                <a href="{{ .Site.BaseURL }}"><img class="top-bar-logo" src="/logo.png" alt="Logo"></a>
+                <span class="top-bar-head">{{ .Site.Params.pagename }}</span>
+                <a href="https://github.com/0000cd/wolf-set"><img class="top-bar-github" alt="GitHub stars"
+                    src="https://img.shields.io/github/stars/0000cd?style=flat&logo=github&logoColor=%23020617&labelColor=%23e4e4e7&color=%2371717a" ></a>
+            </div>
+            <nav class="top-bar-nav">
+                {{ range .Site.Data.navbar.categories }}
+                <div class="menu-container">
+                    <div class="menu-toggle" id="menu-toggle-{{ .id }}">{{ .name }}</div>
+                    <div class="nav-button filter-button-group" id="filter-group-{{ .id }}">
+                        {{ range .tags }}
+                        <button class="filter-btn" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ . }}</button>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+                {{ with .Site.Data.navbar.external_links }}
+                <div class="menu-container">
+                    {{ range . }}
+                    <a href="{{ .url }}" target="_blank" class="menu-toggle">{{ .name }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </nav>
+
+        </div>
+    </div>
+
+
+
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+
+
+    <div class="grid">
+        {{ range .Site.Data.cards }}
+        <div class="grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }}">
+            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener">
+                <div class="grid-item-head">
+                    {{ if .image }}
+                    <img class="grid-item-img" src="{{ .image }}" alt="{{ .title }}">
+                    {{ end }}
+                    <div class="grid-item-header">
+                        <h2 class="grid-item-title">{{ .title }}</h2>
+                        <div class="grid-item-color-mark" style="background: {{ .color }};"></div>
+                    </div>
+                </div>
+            </a>
+            <div class="grid-item-middle">
+                <div class="grid-item-tags filter-button-group">
+                    {{ range .tags }}
+                    <button class="filter-btn grid-item-tag" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ .
+                        }}</button>
+                    {{ end }}
+                </div>
+                <div class="grid-item-date">{{ .date }}</div>
+            </div>
+            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener">
+                <div class="grid-item-description">
+                    <p>{{ .description }}</p>
+                </div>
+            </a>
+            {{ if gt (len .links) 1 }}
+            <div class="grid-item-links">
+                {{ range .links }}
+                <a href="{{ .url }}">{{ .name }}</a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+
+    <button id="reset-filters">✕</button>
+
+    <script src="js/script.min.js"></script>
+
+</body>
+
+</html>

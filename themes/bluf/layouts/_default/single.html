@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="{{ .Site.Params.author }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-inner">
+                <div class="top-bar-title">
+                    <a href="{{ .Site.BaseURL }}"><img class="top-bar-logo" src="/logo.png" alt="Logo"></a>
+                    <span class="top-bar-head">{{ .Site.Params.pagename }}</span>
+                    <a href="https://github.com/0000cd/wolf-set"><img class="top-bar-github" alt="GitHub stars"
+                        src="https://img.shields.io/github/stars/0000cd?style=flat&logo=github&logoColor=%23020617&labelColor=%23e4e4e7&color=%2371717a" ></a>
+                </div>
+            <nav class="top-bar-nav">
+
+                {{ with .Site.Data.navbar.external_links }}
+                <div class="menu-container">
+                    {{ range . }}
+                    <a href="{{ .url }}" target="_blank" class="menu-toggle">{{ .name }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </nav>
+
+        </div>
+    </div>
+
+
+    <article>
+        <div class="single-head">
+            <h1>{{ .Title }}</h1>
+            <span><p>{{ .Date.Format "2006-01-02" }} | <a href="{{ .Site.BaseURL }}">↩</a></p></span>  
+        </div>
+        <section>
+            {{ .Content }}
+        </section>
+
+        <footer>
+
+        </footer>
+    </article>
+
+</body>
+
+</html>

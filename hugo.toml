@@ -1,0 +1,15 @@
+baseURL = 'http://example.org/'
+languageCode = 'zh-CN'
+title = '狼集 - 狼牌工作网址导航'
+theme = 'bluf'
+
+[params]
+  description = "狼集！狼牌工作网址导航：工具，资源，方法，All IN ONE的网址导航。"
+  keywords = ["狼集", "狼牌", "狼牌网址导航", "网址大全", "网址之家", "网址导航", "设计", "markdown", "软件", "安全", "办公"]
+  author = "0000CD.COM & 逊狼"
+  pagename = "狼集 0000CD"
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
