@@ -131,7 +131,7 @@ function showResetButton() {
         resetButton.style.display = 'block'; // Make sure the button is visible before adding 'show'
 
         // Trigger a reflow to ensure the animation plays
-        void resetButton.offsetWidth;
+        (() => resetButton.offsetWidth)();
 
         resetButton.classList.add('show');
     } else {
