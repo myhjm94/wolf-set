@@ -89,7 +89,7 @@ document.querySelectorAll('.filter-button-group').forEach(function (group) {
         const filterValue = event.target.getAttribute('data-filter');
         const filterGroup = event.target.getAttribute('data-filter-group');
         // Check if filter is already in the buttonFilters
-        const isFilterActive = buttonFilters[filterGroup] && buttonFilters[filterGroup].includes(filterValue);
+        const isFilterActive = buttonFilters[filterGroup]?.includes(filterValue);
         // Toggle filter in buttonFilters
         if (isFilterActive) {
             buttonFilters[filterGroup] = buttonFilters[filterGroup].filter(f => f !== filterValue);
