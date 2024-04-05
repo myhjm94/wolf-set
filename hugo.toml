@@ -1,6 +1,6 @@
 baseURL = 'http://example.org/'
 languageCode = 'zh-CN'
-title = '狼集 - 狼牌工作网址导航'
+title = '狼集 - Wolf Set - 狼牌工作网址导航'
 theme = 'bluf'
 
 [params]
