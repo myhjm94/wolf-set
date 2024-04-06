@@ -2,9 +2,11 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=0000cd_wolf-set&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=0000cd_wolf-set)
 
+互联网总需要些“航天器”，各位都好吧？让我们路过些互联网小行星。
+
 ## Bluf theme
 
-Bluf 是一款简明扼要的**瀑布流**卡片式 Hugo 主题，非常适合作品集、链接导等，需要**简单分享**的场景。部分代码由 GPT-4-Tubro 与 Claude-3-Opus AI 协助。
+Bluf 是一款简明扼要的**瀑布流**卡片式 Hugo 主题，非常适合脑暴、作品集、链接导航、等需要**简单分享**的场景。部分代码由 GPT-4-Tubro 与 Claude-3-Opus AI 协助。
 
 ### 用法
 
