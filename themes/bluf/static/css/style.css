@@ -15,6 +15,7 @@ body a {
 .grid {
     margin: 0 auto;
     padding: 20px;
+    padding-bottom: 50px;
 }
 
 .grid a:visited {
@@ -23,11 +24,11 @@ body a {
 
 /* 网格项样式 */
 .grid-item {
-    width: 320px;
-    margin: 0 auto 15px;
+    width: 310px;
+    margin: 0 auto 6px;
     background: #fafafa;
     color: #020617;
-    border-radius: 10px;
+    border-radius: 6px;
     overflow: hidden;
     transition: box-shadow 0.3s ease-in-out;
 }
@@ -42,6 +43,10 @@ body a {
     justify-content: space-between;
     align-items: center;
     padding: 10px 13px 4px;
+}
+
+.grid-item-img {
+    max-width: 310px;
 }
 
 .grid-item-title {

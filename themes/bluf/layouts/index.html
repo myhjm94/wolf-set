@@ -54,15 +54,15 @@
 
     <div class="grid">
         {{ range .Site.Data.cards }}
-        <div class="grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }}">
+        <div class="grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }}{{ .color }}">
             <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener">
                 <div class="grid-item-head">
                     {{ if .image }}
-                    <img class="grid-item-img" src="{{ .image }}" alt="{{ .title }}">
+                    <img class="grid-item-img" src="{{ .image }}" alt="{{ .title }}" loading="lazy">
                     {{ end }}
                     <div class="grid-item-header">
                         <h2 class="grid-item-title">{{ .title }}</h2>
-                        <div class="grid-item-color-mark" style="background: {{ .color }};"></div>
+                        <div class="grid-item-color-mark" style="background: #{{ .hex }};"></div>
                     </div>
                 </div>
             </a>
@@ -83,7 +83,7 @@
             {{ if gt (len .links) 1 }}
             <div class="grid-item-links">
                 {{ range .links }}
-                <a href="{{ .url }}">{{ .name }}</a>
+                <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }} </a>
                 {{ end }}
             </div>
             {{ end }}

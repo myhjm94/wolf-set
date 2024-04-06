@@ -69,9 +69,9 @@ const grid = document.querySelector('.grid');
 const iso = new Isotope(grid, {
     itemSelector: '.grid-item',
     masonry: {
-        columnWidth: 320,
+        columnWidth: 310,
         fitWidth: true,
-        gutter: 10
+        gutter: 5
     }
 });
 
