@@ -2,7 +2,7 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=0000cd_wolf-set&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=0000cd_wolf-set)
 
-互联网总需要些“航天器”，各位都好吧？让我们路过些互联网小行星。
+宇宙总需要些航天器，“📀各位都好吧？” 让我们路过些互联网小行星。
 
 ## Bluf theme
 
