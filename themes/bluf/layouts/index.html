@@ -13,7 +13,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="/css/style.css">
-    <script defer src="https://eu.umami.is/script.js" data-website-id="02cc419c-d758-4a4f-a9bd-1e442b1f8435"></script>
+    {{ if .Site.Params.enableUmami }}
+    <script defer src="{{ .Site.Params.UmamiLink }}" data-website-id="{{ .Site.Params.UmamiID }}"></script>
+    {{ end }}
 </head>
 
 <body>
@@ -38,7 +40,8 @@
                 {{ with .Site.Data.navbar.external_links }}
                 <div class="menu-container">
                     {{ range . }}
-                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener">{{ .name }}</a>
+                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener" {{ if $.Site.Params.enableUmami
+                    }}data-umami-event="NAV-{{ .name }}" {{ end }}>{{ .name }}</a>
                     {{ end }}
                 </div>
                 {{ end }}
@@ -55,8 +58,10 @@
 
     <div class="grid">
         {{ range .Site.Data.cards }}
+        {{ $title := .title }}
         <div class="grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }}{{ .color }}">
-            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener">
+            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami
+                }}data-umami-event="CARD-{{ .title }}" {{ end }}>
                 <div class="grid-item-head">
                     {{ if .image }}
                     <img class="grid-item-img" src="{{ .image }}" alt="{{ .title }}" loading="lazy">
@@ -76,7 +81,8 @@
                 </div>
                 <div class="grid-item-date">{{ .date }}</div>
             </div>
-            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener">
+            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami
+            }}data-umami-event="CARD-{{ .title }}" {{ end }}>
                 <div class="grid-item-description">
                     <p>{{ .description }}</p>
                 </div>
@@ -84,7 +90,8 @@
             {{ if gt (len .links) 1 }}
             <div class="grid-item-links">
                 {{ range .links }}
-                <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }} </a>
+                <a href="{{ .url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami }}
+                    data-umami-event="LINK-{{ $title }}-{{ .name }}" {{ end }}>{{ .name }}</a>
                 {{ end }}
             </div>
             {{ end }}
@@ -109,25 +116,24 @@
                 style="display:inline-block;"><strong>Hugo</strong></a> & <a href="https://github.com/0000cd/wolf-set"
                 target="_blank" rel="noopener" style="display:inline-block;"><strong>Bluf</strong></a><br>
 
-                <a href="https://github.com/0000cd/wolf-set" target="_blank" rel="noopener">    
-            <img alt="GitHub stars"
-                src="https://img.shields.io/github/stars/0000cd?style=flat&logo=github&logoColor=%23020617&labelColor=%23e4e4e7&color=%2371717a">
+            <a href="https://github.com/0000cd/wolf-set" target="_blank" rel="noopener">
+                <img alt="GitHub stars"
+                    src="https://img.shields.io/github/stars/0000cd?style=flat&logo=github&logoColor=%23020617&labelColor=%23e4e4e7&color=%2371717a">
             </a>
 
-            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener">   
-            <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
-            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
-            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
-            <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1">
-        </a>
-            
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener">
+                <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+                <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+                <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
+                <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1">
+            </a>
+
 
             <a href="https://www.cloudflare.com/zh-cn" target="_blank" rel="noopener">
                 <img src="/cf.png" alt="cloudflare">
             </a>
             <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力">
                 <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力">
-            </a>
             </a>
         </p>
     </footer>

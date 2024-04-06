@@ -8,6 +8,10 @@ theme = 'bluf'
   keywords = ["狼集", "狼牌", "狼牌网址导航", "网址大全", "网址之家", "网址导航", "设计", "markdown", "软件", "安全", "办公"]
   author = "0000CD.COM & 逊狼"
   pagename = "狼集 0000CD"
+  enableUmami = true
+  UmamiLink = "https://eu.umami.is/script.js"
+  UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
+  
 
 [sitemap]
   changefreq = "weekly"

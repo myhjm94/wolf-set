@@ -13,7 +13,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="/css/style.css">
-    <script defer src="https://eu.umami.is/script.js" data-website-id="02cc419c-d758-4a4f-a9bd-1e442b1f8435"></script>
+    {{ if .Site.Params.enableUmami }}
+    <script defer src="{{ .Site.Params.UmamiLink }}" data-website-id="{{ .Site.Params.UmamiID }}"></script>
+    {{ end }}
 
 </head>
 
@@ -30,7 +32,8 @@
                 {{ with .Site.Data.navbar.external_links }}
                 <div class="menu-container">
                     {{ range . }}
-                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener">{{ .name }}</a>
+                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener" {{ if $.Site.Params.enableUmami
+                    }}data-umami-event="NAV-{{ .name }}" {{ end }}>{{ .name }}</a>
                     {{ end }}
                 </div>
                 {{ end }}
