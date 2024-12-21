@@ -69,11 +69,30 @@ const grid = document.querySelector('.grid');
 const iso = new Isotope(grid, {
     itemSelector: '.grid-item',
     masonry: {
-        columnWidth: 310,
+        columnWidth: 255,
         fitWidth: true,
-        gutter: 5
+        gutter: 16
     }
 });
+
+// Sync top-bar-inner width with grid width
+const topBarElement = document.querySelector('.top-bar-inner');
+
+if (grid && topBarElement) {
+    const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+            const windowWidth = window.innerWidth;
+            const minWidth = windowWidth * 0.9; // 90% of window width
+            const newWidth = Math.max(entry.contentRect.width, minWidth);
+            topBarElement.style.width = newWidth + 'px';
+        }
+    });
+
+    resizeObserver.observe(grid);
+} else {
+    console.error('Grid or top-bar-inner element not found!');
+}
+
 
 // use imagesLoaded, trigger layout after each image loads
 imagesLoaded(grid).on('progress', function (instance, image) {

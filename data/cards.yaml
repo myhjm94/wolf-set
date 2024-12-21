@@ -3,234 +3,219 @@
 - title: 狼集 Wolf Set
   image: /img/镀金铝板.png
   hex: 0000cd
-  color: blue
   tags:
-    - 置顶
+  - 置顶
   date: 24/04
   description: 宇宙总需要些航天器，“📀各位都好吧？” 让我们路过些互联网小行星。
   links:
-    - name: GitHub
-      url: https://github.com/0000cd/wolf-set
-    - name: 网站统计
-      url: https://eu.umami.is/share/inDFetQGPNU7eUt4/ws.0000cd.com
+  - name: GitHub
+    url: https://github.com/0000cd/wolf-set
+  - name: 网站统计
+    url: https://eu.umami.is/share/inDFetQGPNU7eUt4/ws.0000cd.com
 
 - title: 夸克
   image: /img/夸克.jpg
   hex: 0d53ff
-  color: blue
   tags:
-    - 置顶
+  - 置顶
   date: 24/04
   description: 搜索有AI，扫描自动校正，网盘文件找得快，做你学习、工作、生活的高效拍档！手机电视电脑都能用。
   links:
-    - name: 夸克
-      url: https://www.quark.cn/
-    - name: 网盘
-      url: https://pan.quark.cn/
-    - name: 扫描
-      url: https://scan.quark.cn/
+  - name: 夸克
+    url: https://www.quark.cn/
+  - name: 网盘
+    url: https://pan.quark.cn/
+  - name: 扫描
+    url: https://scan.quark.cn/
 
 - title: 阿里云
   image: /img/阿里云.jpg
   hex: ff6a00
-  color: orange
   tags:
-    - 置顶
+  - 置顶
   date: 24/04
   description: 新老用户服务器一年99！3分钟部署 AI 或联机游戏，学生更有免费特惠。
   links:
-    - name: 服务器 99
-      url: https://www.aliyun.com/minisite/goods?userCode=chvg06mh
-    - name: AI 软件游戏
-      url: https://computenest.aliyun.com/services/all?userCode=chvg06mh
-    - name: 学生特惠
-      url: https://developer.aliyun.com/plan/student?userCode=chvg06mh
+  - name: 服务器 99
+    url: https://www.aliyun.com/minisite/goods?userCode=chvg06mh
+  - name: AI 软件游戏
+    url: https://computenest.aliyun.com/services/all?userCode=chvg06mh
+  - name: 学生特惠
+    url: https://developer.aliyun.com/plan/student?userCode=chvg06mh
 
 - title: Unsplash
   image: img/Unsplash.jpg
   hex: "000000"
-  color: black
   tags:
-    - 🔹推荐
-    - 网页
-    - 图片
+  - 🔹推荐
+  - 网页
+  - 图片
   date: "2024/04"
   description: 全球摄影师 300万 高清免费图片。
   links:
-    - name: 官网
-      url: https://unsplash.com
-    - name: 背景
-      url: https://unsplash.com/backgrounds
-    - name: 壁纸
-      url: https://unsplash.com/wallpapers
+  - name: 官网
+    url: https://unsplash.com
+  - name: 背景
+    url: https://unsplash.com/backgrounds
+  - name: 壁纸
+    url: https://unsplash.com/wallpapers
 
 - title: The Useless Web
   image:
   hex: ff1493
-  color: pink
   tags:
-    - 🔹推荐
-    - 网页
-    - 有趣
+  - 🔹推荐
+  - 网页
+  - 有趣
   date: "2024/04"
   description: 随机打开互联网上有趣而无用的网站。
   links:
-    - name: 官网
-      url: https://game-icons.net/
+  - name: 官网
+    url: https://theuselessweb.com
 
 - title: i Hate Regex
-  image: 
+  image:
   hex: e53e3e
-  color: red
   tags:
-    - 网页
-    - 工具
-    - 开源
+  - 网页
+  - 工具
+  - 开源
   date: "2024/04"
   description: 帮助讨厌复杂正则表达式的人更好地理解和使用它们，现在你有两个问题了。
   links:
-    - name: 官网
-      url: https://ihateregex.io/
-    - name: GitHub
-      url: https://github.com/geongeorge/i-hate-regex
-    - name: 🔸打赏
-      url: https://opencollective.com/ihateregex
+  - name: 官网
+    url: https://ihateregex.io/
+  - name: GitHub
+    url: https://github.com/geongeorge/i-hate-regex
+  - name: 🔸打赏
+    url: https://opencollective.com/ihateregex
 
 - title: Blaze
-  image: 
+  image:
   hex: 3be8b0
-  color: green
   tags:
-    - 网页
-    - 工具
-    - 传输
-    - 开源
+  - 网页
+  - 工具
+  - 传输
+  - 开源
   date: "2024/04"
   description: WebTorrent 跨设备即时多对多文件传输，无需安装应用或创建账户。
   links:
-    - name: 官网
-      url: https://blaze.vercel.app/
-    - name: GitHub
-      url: https://github.com/blenderskool/blaze
-    - name: 🔸打赏
-      url: https://github.com/sponsors/blenderskool
+  - name: 官网
+    url: https://blaze.vercel.app/
+  - name: GitHub
+    url: https://github.com/blenderskool/blaze
+  - name: 🔸打赏
+    url: https://github.com/sponsors/blenderskool
 
 - title: Msgif
   image: /img/Msgif.gif
   hex: 7880dd
-  color: purple
   tags:
-    - 网页
-    - 动图
-    - 有趣
+  - 网页
+  - 动图
+  - 有趣
   date: "2024/04"
   description: 将打字的过程转换成动图，见字如面。
   links:
-    - name: 官网
-      url: https://msgif.net/
+  - name: 官网
+    url: https://msgif.net/
 
 - title: Marked.cc
   image: /img/Marked.cc.png
   hex: fecf28
-  color: yellow
   tags:
-    - 网页
-    - 图片
-    - 有趣
+  - 网页
+  - 图片
+  - 有趣
   date: "2024/04"
   description: 简单的制作一张便签图片。
   links:
-    - name: 官网
-      url: https://marked.cc/
-    - name: GitHub
-      url: https://github.com/msjaber/marked.cc
+  - name: 官网
+    url: https://marked.cc/
+  - name: GitHub
+    url: https://github.com/msjaber/marked.cc
 
 - title: Exploding Topics
   image:
   hex: 2e5ce5
-  color: blue
   tags:
-    - 网页
-    - 搜索
-    - 想法
+  - 网页
+  - 搜索
+  - 想法
   date: "2024/04"
   description: 寻找快速增长与有潜力的科技话题。
   links:
-    - name: 官网
-      url: https://explodingtopics.com/
+  - name: 官网
+    url: https://explodingtopics.com/
 
 - title: 100font.com
   image: /img/100font.com.png
   hex: f7c601
-  color: yellow
   tags:
-    - 🔹推荐
-    - 网页
-    - 字体
+  - 🔹推荐
+  - 网页
+  - 字体
   date: "2024/04"
   description: 一个专门收集整理“免费商用字体”的网站，有大量中文字体。
   links:
-    - name: 官网
-      url: https://explodingtopics.com/
+  - name: 官网
+    url: https://www.100font.com
 
 - title: Recompressor
   image: /img/Recompressor.png
   hex: 3755dc
-  color: blue
   tags:
-    - 🔹推荐
-    - 网页
-    - 工具
-    - 图片
+  - 🔹推荐
+  - 网页
+  - 工具
+  - 图片
   date: "2024/04"
   description: 智能压缩技术，无需上传服务器即可优化图片质量与尺寸，多种图像工具。
   links:
-    - name: 压缩
-      url: https://zh.recompressor.com/
-    - name: 修复
-      url: https://zh.pixfix.com/
-    - name: 检查
-      url: https://zh.pixspy.com/
+  - name: 压缩
+    url: https://zh.recompressor.com/
+  - name: 修复
+    url: https://zh.pixfix.com/
+  - name: 检查
+    url: https://zh.pixspy.com/
 
 - title: No More Ransom
   image:
   hex: 102a87
-  color: blue
   tags:
-    - 网页
-    - 安全
+  - 网页
+  - 安全
   date: "2024/04"
   description: 提供数十种免费的解密工具，从勒索病毒中恢复数据。
   links:
-    - name: 官网
-      url: https://www.nomoreransom.org/zh/index.html
-    - name: 知识
-      url: https://www.nomoreransom.org/zh/ransomware-qa.html
-    - name: 建议
-      url: https://www.nomoreransom.org/zh/prevention-advice-for-users.html
+  - name: 官网
+    url: https://www.nomoreransom.org/zh/index.html
+  - name: 知识
+    url: https://www.nomoreransom.org/zh/ransomware-qa.html
+  - name: 建议
+    url: https://www.nomoreransom.org/zh/prevention-advice-for-users.html
 
 - title: IconKitchen
   image:
   hex: 6a3de8
-  color: purple
   tags:
-    - 网页
-    - 图标
+  - 网页
+  - 图标
   date: "2024/04"
   description: 轻松设计生成标准的全平台应用图标。
   links:
-    - name: 官网
-      url: https://www.nomoreransom.org/zh/index.html
+  - name: 官网
+    url: https://icon.kitchen
 
 - title: Game-icons.net
   image:
   hex: "000000"
-  color: black
   tags:
-    - 网页
-    - 图标
+  - 网页
+  - 图标
   date: "2024/04"
   description: 4千 CC 授权免费矢量游戏图标。
   links:
-    - name: 官网
-      url: https://game-icons.net/
+  - name: 官网
+    url: https://game-icons.net/

@@ -1,0 +1,32 @@
+{{- $hex := . -}}
+{{- $r := printf "0x%s" (substr $hex 0 2) | int -}}
+{{- $g := printf "0x%s" (substr $hex 2 2) | int -}}
+{{- $b := printf "0x%s" (substr $hex 4 2) | int -}}
+
+{{- $result := "unknown" -}}
+
+{{- if and (lt (math.Abs (sub $r $g)) 30) (lt (math.Abs (sub $g $b)) 30) (lt (math.Abs (sub $r $b)) 30) -}}
+  {{- $result = "gray" -}}
+{{- else if and (gt $r 200) (gt $g 150) (lt $b 100) (gt $r $g) -}}
+  {{- $result = "yellow" -}}
+{{- else if and (gt $r $g) (gt $r $b) -}}
+  {{- if gt $g $b -}}
+    {{- $result = "orange" -}}
+  {{- else -}}
+    {{- $result = "red" -}}
+  {{- end -}}
+{{- else if and (gt $g $r) (gt $g $b) -}}
+  {{- if gt $b $r -}}
+    {{- $result = "cyan" -}}
+  {{- else -}}
+    {{- $result = "green" -}}
+  {{- end -}}
+{{- else if and (gt $b $r) (gt $b $g) -}}
+  {{- if gt $r $g -}}
+    {{- $result = "purple" -}}
+  {{- else -}}
+    {{- $result = "blue" -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $result -}}

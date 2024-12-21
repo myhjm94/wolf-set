@@ -1,13 +1,26 @@
 baseURL = 'http://example.org/'
 languageCode = 'zh-CN'
-title = '狼集 - Wolf Set - 狼牌工作网址导航'
+title = '狼集 - Wolf Set | 狼牌工作网址导航 - 0000CD'
 theme = 'bluf'
 
 [params]
-  description = "狼集！狼牌工作网址导航：工具，资源，方法，All IN ONE的网址导航。"
-  keywords = ["狼集", "狼牌", "狼牌网址导航", "网址大全", "网址之家", "网址导航", "设计", "markdown", "软件", "安全", "办公"]
+  description = "狼集（Wolf Set）- 专注于提供高效工具、优质资源、实用方法的全能网址导航平台！源自“狼牌工作网址导航”，集设计、Markdown、软件、安全、办公必备网址于一体，All in One 最佳选择。"
+  keywords = [
+  "狼集",
+  "Wolf Set",
+  "狼牌",
+  "狼牌工作网址导航",
+  "网址大全",
+  "网址之家",
+  "网址导航",
+  "设计工具",
+  "Markdown资源",
+  "办公软件",
+  "安全工具",
+  "All in One"
+]
   author = "0000CD.COM & 逊狼"
-  pagename = "狼集 0000CD"
+  pagename = "狼集 Wolf Set"
   enableUmami = true
   UmamiLink = "https://eu.umami.is/script.js"
   UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
