@@ -12,6 +12,20 @@
   - name: 网站统计
     url: https://eu.umami.is/share/inDFetQGPNU7eUt4/ws.0000cd.com
 
+- title: TGAGWCAGA
+  hex: "#0583ab"
+  tags:
+  - 置顶
+  - 有趣
+  date: 24/12
+  description: 为付不起 TGA 的游戏设立的 TGA。The Game Awards for Games Who Can't Afford the Game Awards.
+  links:
+  - name: 官网
+    url: https://tgagwcaga.com/
+  - name: Steam 特卖！
+    url: https://store.steampowered.com/curator/45328769-The-Great-Awards-for-Games-With-Creative/sale/tgagwcaga
+
+
 - title: 夸克
   hex: "#0d53ff"
   tags:
@@ -51,6 +65,51 @@
   date: "2024/12"
   description: 识别任意网页的技术栈。
   links: https://www.wappalyzer.com/
+
+- title: Neal.fun
+  hex: "#ffc7c7"
+  tags:
+  - 网页
+  - 有趣
+  date: "2024/12"
+  description: 希望你有美好的一天… 游戏互动可视化等其他奇怪的东西。
+  links:
+  - name: 官网
+    url: https://neal.fun/
+  - name: 设置密码？
+    url: https://neal.fun/password-game/
+  - name: 赞助
+    url: https://buymeacoffee.com/neal
+
+- title: Wild West
+  hex: "#BBF7D0"
+  tags:
+  - 网页
+  - 有趣
+  - AI
+  date: "2024/12"
+  description: 由 AI 驱动的游戏，剪刀石头布。
+  links:
+  - name: 官网
+    url: https://www.wildwest.gg/
+  - name: 击败石头？
+    url: https://www.whatbeatsrock.com/
+
+- title: UniGetUI
+  hex: "#707070"
+  tags:
+  - 桌面
+  - 开源
+  - 开发
+  date: "2024/12"
+  description: 图形化 Windows 全能包管理器。
+  links:
+  - name: 官网
+    url: https://www.marticliment.com/unigetui/
+  - name: GitHub
+    url: https://github.com/marticliment/UniGetUI
+  - name: 赞助
+    url: https://ko-fi.com/s/290486d079
 
 - title: PowerToys
   hex: "#666666"
