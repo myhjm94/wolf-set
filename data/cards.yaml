@@ -1,12 +1,11 @@
 # https://github.com/0000cd/wolf-set
 
-- title: 狼集 Wolf Set
-  image: /img/镀金铝板.png
-  hex: 0000cd
+- title: 欢迎回来
+  hex: "#0000cd"
   tags:
   - 置顶
   date: 24/04
-  description: 宇宙总需要些航天器，“📀各位都好吧？” 让我们路过些互联网小行星。
+  description: 狼集 Wolf Set：宇宙总需要些航天器，“📀各位都好吧？” 让我们路过些互联网小行星。
   links:
   - name: GitHub
     url: https://github.com/0000cd/wolf-set
@@ -14,8 +13,7 @@
     url: https://eu.umami.is/share/inDFetQGPNU7eUt4/ws.0000cd.com
 
 - title: 夸克
-  image: /img/夸克.jpg
-  hex: 0d53ff
+  hex: "#0d53ff"
   tags:
   - 置顶
   date: 24/04
@@ -29,10 +27,10 @@
     url: https://scan.quark.cn/
 
 - title: 阿里云
-  image: /img/阿里云.jpg
-  hex: ff6a00
+  hex: "#ff6a00"
   tags:
   - 置顶
+  - 开发
   date: 24/04
   description: 新老用户服务器一年99！3分钟部署 AI 或联机游戏，更有学生特惠。
   links:
@@ -43,11 +41,53 @@
   - name: 学生特惠
     url: https://developer.aliyun.com/plan/student?userCode=chvg06mh
 
-- title: Unsplash
-  image: img/Unsplash.jpg
-  hex: "000000"
+# 正文
+
+- title: Wappalyzer
+  hex: "#4608AD"
   tags:
-  - 🔹推荐
+  - 网页
+  - 开发
+  date: "2024/12"
+  description: 识别任意网页的技术栈。
+  links: https://www.wappalyzer.com/
+
+- title: PowerToys
+  hex: "#666666"
+  tags:
+  - 桌面
+  - 开源
+  - 工具
+  date: "2024/12"
+  description: 一组实用工具，可帮助高级用户调整和简化其 Windows 体验，从而提高工作效率。
+  links:
+  - name: 官网
+    url: https://learn.microsoft.com/zh-cn/windows/powertoys/
+  - name: GitHub
+    url: https://github.com/microsoft/PowerToys
+  - name: 微软商店
+    url: https://apps.microsoft.com/detail/xp89dcgq3k6vld?hl=zh-cn&gl=CN
+
+- title: LocalSend
+  hex: "#008080"
+  tags:
+  - 桌面
+  - 移动
+  - 开源
+  date: "2024/12"
+  description: 全平台 WIFI 分享文件。
+  links:
+  - name: 官网
+    url: https://localsend.org/zh-CN
+  - name: GitHub
+    url: https://github.com/localsend/localsend
+  - name: 赞助
+    url: https://github.com/sponsors/Tienisto
+
+- title: Unsplash
+  hex: "#000000"
+  tags:
+  - 推荐
   - 网页
   - 图片
   date: "2024/04"
@@ -61,10 +101,9 @@
     url: https://unsplash.com/wallpapers
 
 - title: The Useless Web
-  image:
-  hex: ff1493
+  hex: "#ff1493"
   tags:
-  - 🔹推荐
+  - 推荐
   - 网页
   - 有趣
   date: "2024/04"
@@ -72,12 +111,11 @@
   links: https://theuselessweb.com
 
 - title: i Hate Regex
-  image:
-  hex: e53e3e
+  hex: "#e53e3e"
   tags:
   - 网页
-  - 工具
   - 开源
+  - 开发
   date: "2024/04"
   description: 帮助讨厌复杂正则表达式的人理解和使用它们，现在你有两个问题了。
   links:
@@ -85,41 +123,21 @@
     url: https://ihateregex.io/
   - name: GitHub
     url: https://github.com/geongeorge/i-hate-regex
-  - name: 🔸打赏
+  - name: 赞助
     url: https://opencollective.com/ihateregex
 
-- title: Blaze
-  image:
-  hex: 3be8b0
-  tags:
-  - 网页
-  - 工具
-  - 传输
-  - 开源
-  date: "2024/04"
-  description: WebTorrent 跨设备即时多对多文件传输，无需安装应用或创建账户。
-  links:
-  - name: 官网
-    url: https://blaze.vercel.app/
-  - name: GitHub
-    url: https://github.com/blenderskool/blaze
-  - name: 🔸打赏
-    url: https://github.com/sponsors/blenderskool
-
 - title: Msgif
-  image: /img/Msgif.gif
-  hex: 7880dd
+  hex: "#7880dd"
   tags:
   - 网页
   - 动图
   - 有趣
   date: "2024/04"
-  description: 将打字的过程转换成动图，见字如面。
+  description: 打字过程转换成动图，见字如面。
   links: https://msgif.net/
 
 - title: Marked.cc
-  image: /img/Marked.cc.png
-  hex: fecf28
+  hex: "#fecf28"
   tags:
   - 网页
   - 图片
@@ -133,8 +151,7 @@
     url: https://github.com/msjaber/marked.cc
 
 - title: Exploding Topics
-  image:
-  hex: 2e5ce5
+  hex: "#2e5ce5"
   tags:
   - 网页
   - 搜索
@@ -144,10 +161,9 @@
   links: https://explodingtopics.com/
 
 - title: 100font.com
-  image: /img/100font.com.png
-  hex: f7c601
+  hex: "#f7c601"
   tags:
-  - 🔹推荐
+  - 推荐
   - 网页
   - 字体
   date: "2024/04"
@@ -155,10 +171,9 @@
   links: https://www.100font.com
 
 - title: Recompressor
-  image: /img/Recompressor.png
-  hex: 3755dc
+  hex: "#3755dc"
   tags:
-  - 🔹推荐
+  - 推荐
   - 网页
   - 工具
   - 图片
@@ -173,8 +188,7 @@
     url: https://zh.pixspy.com/
 
 - title: No More Ransom
-  image:
-  hex: 102a87
+  hex: "#102a87"
   tags:
   - 网页
   - 安全
@@ -189,18 +203,17 @@
     url: https://www.nomoreransom.org/zh/prevention-advice-for-users.html
 
 - title: IconKitchen
-  image:
-  hex: 6a3de8
+  hex: "#6a3de8"
   tags:
   - 网页
   - 图标
+  - 开发
   date: "2024/04"
   description: 轻松生成标准的全平台应用图标。
   links: https://icon.kitchen
 
 - title: Game-icons.net
-  image:
-  hex: "000000"
+  hex: "#000000"
   tags:
   - 网页
   - 图标

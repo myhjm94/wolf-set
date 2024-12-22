@@ -24,7 +24,7 @@ body a {
 }
 
 .grid a:visited {
-    color: #71717a;
+    color: #52525b;
 }
 
 /* 网格项样式 */
@@ -33,7 +33,7 @@ body a {
     margin: 8px 0 8px 0;
     background: #fafafa;
     color: #020617;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     transition: box-shadow 0.3s ease-in-out;
 }
@@ -93,12 +93,14 @@ body a {
 
 .grid-item-tag {
     background: #f3f4f6;
+    color: #52525b;
     border-radius: 3px;
     padding: 2px 5px;
     font-size: 0.75em;
 }
 
 .grid-item-date {
+    color: #52525b;
     font-size: 0.75em;
 }
 
@@ -128,7 +130,7 @@ body a {
     top: 0;
     left: 0;
     width: 100%;
-    background: #f3f4f6;
+    /* background: #f3f4f6; */
     color: #020617;
     padding: 10px 0;
     z-index: 1000;
@@ -184,7 +186,7 @@ button.filter-btn {
 }
 
 button.filter-btn:hover {
-    background-color: #71717a;
+    background-color: #52525b;
     color: #fafafa;
 }
 
@@ -360,8 +362,4 @@ button.filter-btn.is-checked {
     vertical-align: middle;
     height: 14px;
     margin-left: 3px;
-}
-
-.top-title{
-    font-size: 1em;
 }

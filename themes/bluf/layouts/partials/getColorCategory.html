@@ -1,32 +1,72 @@
 {{- $hex := . -}}
+{{- if eq (substr $hex 0 1) "#" -}}  {{/* 检查是否以 "#" 开头 */}}
+  {{- $hex = substr $hex 1 -}}       {{/* 去掉 "#" */}}
+{{- end -}}
+
+{{/* 将 HEX 转换为 RGB */}}
 {{- $r := printf "0x%s" (substr $hex 0 2) | int -}}
 {{- $g := printf "0x%s" (substr $hex 2 2) | int -}}
 {{- $b := printf "0x%s" (substr $hex 4 2) | int -}}
 
-{{- $result := "unknown" -}}
+{{/* 将 RGB 归一化到 [0, 1] */}}
+{{- $rf := div (float $r) 255 -}}
+{{- $gf := div (float $g) 255 -}}
+{{- $bf := div (float $b) 255 -}}
 
-{{- if and (lt (math.Abs (sub $r $g)) 30) (lt (math.Abs (sub $g $b)) 30) (lt (math.Abs (sub $r $b)) 30) -}}
-  {{- $result = "gray" -}}
-{{- else if and (gt $r 200) (gt $g 150) (lt $b 100) (gt $r $g) -}}
-  {{- $result = "yellow" -}}
-{{- else if and (gt $r $g) (gt $r $b) -}}
-  {{- if gt $g $b -}}
-    {{- $result = "orange" -}}
+{{/* 模拟 max 和 min 函数 */}}
+{{- $max := $rf -}}
+{{- if gt $gf $max }} {{- $max = $gf -}} {{- end -}}
+{{- if gt $bf $max }} {{- $max = $bf -}} {{- end -}}
+
+{{- $min := $rf -}}
+{{- if lt $gf $min }} {{- $min = $gf -}} {{- end -}}
+{{- if lt $bf $min }} {{- $min = $bf -}} {{- end -}}
+
+{{/* 计算 HSV 值 */}}
+{{- $delta := sub $max $min -}}
+
+{{- $hue := 0.0 -}}
+{{- if gt $delta 0.0 -}}
+  {{- if eq $max $rf -}}
+    {{- $hue = mod (add (mul 60 (div (sub $gf $bf) $delta)) 360) 360 -}}
+  {{- else if eq $max $gf -}}
+    {{- $hue = add (mul 60 (div (sub $bf $rf) $delta)) 120 -}}
   {{- else -}}
-    {{- $result = "red" -}}
-  {{- end -}}
-{{- else if and (gt $g $r) (gt $g $b) -}}
-  {{- if gt $b $r -}}
-    {{- $result = "cyan" -}}
-  {{- else -}}
-    {{- $result = "green" -}}
-  {{- end -}}
-{{- else if and (gt $b $r) (gt $b $g) -}}
-  {{- if gt $r $g -}}
-    {{- $result = "purple" -}}
-  {{- else -}}
-    {{- $result = "blue" -}}
+    {{- $hue = add (mul 60 (div (sub $rf $gf) $delta)) 240 -}}
   {{- end -}}
 {{- end -}}
 
+{{- $saturation := 0.0 -}}
+{{- if gt $max 0.0 -}}
+  {{- $saturation = div $delta $max -}}
+{{- end -}}
+
+{{- $value := $max -}}
+
+{{/* 优先判断灰色（包括黑和白） */}}
+{{- $result := "unknown" -}}
+{{- if le $saturation 0.2 -}}
+  {{- $result = "gray" -}}
+{{- else -}}
+  {{/* 根据 Hue 值分类颜色 */}}
+  {{- if or (and (ge $hue 0) (lt $hue 15)) (and (ge $hue 345) (lt $hue 360)) -}}
+    {{- $result = "red" -}}
+  {{- else if and (ge $hue 15) (lt $hue 45) -}}
+    {{- $result = "orange" -}}
+  {{- else if and (ge $hue 45) (lt $hue 75) -}}
+    {{- $result = "yellow" -}}
+  {{- else if and (ge $hue 75) (lt $hue 165) -}}
+    {{- $result = "green" -}}
+  {{- else if and (ge $hue 165) (lt $hue 195) -}}
+    {{- $result = "cyan" -}}
+  {{- else if and (ge $hue 195) (lt $hue 255) -}}
+    {{- $result = "blue" -}}
+  {{- else if and (ge $hue 255) (lt $hue 315) -}}
+    {{- $result = "purple" -}}
+  {{- else if and (ge $hue 315) (lt $hue 345) -}}
+    {{- $result = "pink" -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* 输出最终颜色分类 */}}
 {{- $result -}}

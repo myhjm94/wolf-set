@@ -30,3 +30,10 @@ theme = 'bluf'
   changefreq = "weekly"
   priority = 0.5
   filename = "sitemap.xml"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  
+[outputFormats.RSS]
+  mediatype = "application/rss+xml"
+  baseName = "feed"

@@ -24,7 +24,7 @@
         <div class="top-bar-inner">
             <div class="top-bar-title">
                 <a href="{{ .Site.BaseURL }}"><img class="top-bar-logo" src="/logo.png" alt="Logo"></a>
-                <h1 class="top-title">{{ .Site.Params.pagename }}</h1>
+                <h1 class="top-title" style="font-size: 1em;">{{ .Site.Params.pagename }}</h1>
             </div>
             <nav class="top-bar-nav">
                 {{ range .Site.Data.navbar.categories }}
@@ -66,12 +66,20 @@
                     {{ end }}
 
                     <div class="grid-item-head">
-                        {{ if .image }}
-                        <img class="grid-item-img" src="{{ .image }}" alt="{{ .title }}" loading="lazy">
+                        {{/*  {{ if .image }}
+                        <img class="grid-item-img" src="/img/{{ .image }}" alt="{{ .title }}" loading="lazy">
+                        {{ end }}  */}}
+                        {{ $extensions := slice "jpg" "jpeg" "png" "gif" "webp" }}
+                        {{ range $ext := $extensions }}
+                            {{ $imgPath := printf "static/img/%s.%s" $title $ext }}
+                            {{ if (fileExists $imgPath) }}
+                                <img class="grid-item-img" src="/img/{{ $title }}.{{ $ext }}" alt="{{ $title }}" loading="lazy">
+                                {{ break }}
+                            {{ end }}
                         {{ end }}
                         <header  class="grid-item-header">
                             <h2 class="grid-item-title">{{ .title }}</h2>
-                            <div class="grid-item-color-mark" style="background: #{{ .hex }};"></div>
+                            <div class="grid-item-color-mark" style="background:{{ if eq (substr .hex 0 1) "#" }}{{ .hex }}{{ else }}#{{ .hex }}{{ end }};"></div>
                         </header>
                     </div>
                 </a>

@@ -5,11 +5,19 @@ date: 2024-04-04
 draft: false
 ---
 
+## 狼集 Wolf Set
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=0000cd_wolf-set&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=0000cd_wolf-set)
 
 宇宙总需要些航天器，“📀各位都好吧？” 让我们路过些互联网小行星。
 
-狼集 Wolf Set，源自“狼牌工作网址导航”。集万千兴趣，再次分享发现互联网的新乐趣！
+狼集 Wolf Set，源自“狼牌工作网址导航”。集万千兴趣，再次发现分享互联网的新乐趣！
+
+### 灵感
+
+Wolf（狼）+ Set（集合），音同“狼藉”（杂乱不堪，糟透了！），一个聚合发现与分享的地方。
+
+Wolf Set 则更常见于游戏，是指“狼套装”，一身盔甲或装备，你冒险可靠的家伙。
 
 ![镀金铝板](/img/镀金铝板.png)
 
@@ -37,7 +45,7 @@ Bluf 是一款单页 Hugo 主题，这意味着你应该将数据放置在 data 
 - navbar.yaml：包括顶部导航栏的标签筛选和外链数据。
 - tag_classes.yaml：配置标签和标签样式之间的映射关系。
 
-#### 灵感
+### 灵感
 
 Blue + Wolf = Bluf
 
