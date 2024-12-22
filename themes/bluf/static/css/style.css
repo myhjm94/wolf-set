@@ -69,7 +69,7 @@ body a {
 
 /* 网格项描述样式 */
 .grid-item-description {
-    padding: 4px 13px 8px 13px;
+    padding: 4px 13px 10px 13px;
     font-size: 0.875em;
 }
 
@@ -198,7 +198,7 @@ button.filter-btn.is-checked {
     position: relative;
     display: inline-block;
     padding: 10px;
-    margin: 5px;
+    margin: 5px 0;
 }
 
 
@@ -329,7 +329,7 @@ button.filter-btn.is-checked {
 }
 
 /* 文章 */
-article {
+.post {
     max-width: 800px;
     padding: 20px;
     line-height: 1.4;
@@ -360,4 +360,8 @@ article {
     vertical-align: middle;
     height: 14px;
     margin-left: 3px;
+}
+
+.top-title{
+    font-size: 1em;
 }

@@ -24,7 +24,7 @@
         <div class="top-bar-inner">
             <div class="top-bar-title">
                 <a href="{{ .Site.BaseURL }}"><img class="top-bar-logo" src="/logo.png" alt="Logo"></a>
-                <span class="top-bar-head">{{ .Site.Params.pagename }}</span>
+                <h1 class="top-title">{{ .Site.Params.pagename }}</h1>
             </div>
             <nav class="top-bar-nav">
                 {{ range .Site.Data.navbar.categories }}
@@ -40,8 +40,7 @@
                 {{ with .Site.Data.navbar.external_links }}
                 <div class="menu-container">
                     {{ range . }}
-                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener" {{ if
-                        $.Site.Params.enableUmami }}data-umami-event="NAV-{{ .name }}" {{ end }}>{{ .name }}</a>
+                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener" {{ if $.Site.Params.enableUmami }}data-umami-event="NAV-{{ .name }}" {{ end }}>{{ .name }}</a>
                     {{ end }}
                 </div>
                 {{ end }}
@@ -57,44 +56,60 @@
     <div class="grid">
         {{ range .Site.Data.cards }}
         {{ $title := .title }}
-        <!-- <div class="grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }}{{ .color }}"> -->
-            <div class="grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }} {{ partial "getColorCategory" .hex }}">
-            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami
-                }}data-umami-event="CARD-{{ .title }}" {{ end }}>
-                <div class="grid-item-head">
-                    {{ if .image }}
-                    <img class="grid-item-img" src="{{ .image }}" alt="{{ .title }}" loading="lazy">
+        <article id="{{ .title }}">
+        <div class=
+        "grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }} {{ partial "getColorCategory" .hex }}">
+            {{ if reflect.IsSlice .links }}
+            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami }}data-umami-event="CARD-{{ .title }}" {{ end }}>
+                {{ else }}
+                <a href="{{ .links | safeURL }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami }}data-umami-event="CARD-{{ .title }}" {{ end }}>
                     {{ end }}
-                    <div class="grid-item-header">
-                        <h2 class="grid-item-title">{{ .title }}</h2>
-                        <div class="grid-item-color-mark" style="background: #{{ .hex }};"></div>
+
+                    <div class="grid-item-head">
+                        {{ if .image }}
+                        <img class="grid-item-img" src="{{ .image }}" alt="{{ .title }}" loading="lazy">
+                        {{ end }}
+                        <header  class="grid-item-header">
+                            <h2 class="grid-item-title">{{ .title }}</h2>
+                            <div class="grid-item-color-mark" style="background: #{{ .hex }};"></div>
+                        </header>
                     </div>
+                </a>
+
+                <div class="grid-item-middle">
+                    <div class="grid-item-tags filter-button-group">
+                        {{ range .tags }}
+                        <button class="filter-btn grid-item-tag" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{
+                            .
+                            }}</button>
+                        {{ end }}
+                    </div>
+                    <div class="grid-item-date" datetime="{{ .date }}">{{ .date }}</div>
                 </div>
-            </a>
-            <div class="grid-item-middle">
-                <div class="grid-item-tags filter-button-group">
-                    {{ range .tags }}
-                    <button class="filter-btn grid-item-tag" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ .
-                        }}</button>
+
+                {{ if reflect.IsSlice .links }}
+                <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami }}data-umami-event="CARD-{{ .title }}" {{ end }}>
+
+                    {{ else }}
+                    <a href="{{ .links | safeURL }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami }}data-umami-event="CARD-{{ .title }}" {{ end }}>
+                        {{ end }}
+
+                        <section class="grid-item-description">
+                            <p>{{ .description }}</p>
+                        </section>
+                    </a>
+
+                    {{ if reflect.IsSlice .links }}
+                    {{ if gt (len .links) 1 }}
+                    <nav class="grid-item-links">
+                        {{ range .links }}
+                        <a href="{{ .url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami }} data-umami-event="LINK-{{ $title }}-{{ .name }}" {{ end }}>{{ .name }}</a>
+                        {{ end }}
+                    </nav>
                     {{ end }}
-                </div>
-                <div class="grid-item-date">{{ .date }}</div>
-            </div>
-            <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami
-                }}data-umami-event="CARD-{{ .title }}" {{ end }}>
-                <div class="grid-item-description">
-                    <p>{{ .description }}</p>
-                </div>
-            </a>
-            {{ if gt (len .links) 1 }}
-            <div class="grid-item-links">
-                {{ range .links }}
-                <a href="{{ .url }}" target="_blank" rel="noopener" {{ if $.Site.Params.enableUmami }}
-                    data-umami-event="LINK-{{ $title }}-{{ .name }}" {{ end }}>{{ .name }}</a>
-                {{ end }}
-            </div>
-            {{ end }}
+                    {{ end }}
         </div>
+        </article>
         {{ end }}
     </div>
 

@@ -34,7 +34,7 @@
   tags:
   - 置顶
   date: 24/04
-  description: 新老用户服务器一年99！3分钟部署 AI 或联机游戏，学生更有免费特惠。
+  description: 新老用户服务器一年99！3分钟部署 AI 或联机游戏，更有学生特惠。
   links:
   - name: 服务器 99
     url: https://www.aliyun.com/minisite/goods?userCode=chvg06mh
@@ -68,10 +68,8 @@
   - 网页
   - 有趣
   date: "2024/04"
-  description: 随机打开互联网上有趣而无用的网站。
-  links:
-  - name: 官网
-    url: https://theuselessweb.com
+  description: 随机打开网上有趣而无用的网站。
+  links: https://theuselessweb.com
 
 - title: i Hate Regex
   image:
@@ -81,7 +79,7 @@
   - 工具
   - 开源
   date: "2024/04"
-  description: 帮助讨厌复杂正则表达式的人更好地理解和使用它们，现在你有两个问题了。
+  description: 帮助讨厌复杂正则表达式的人理解和使用它们，现在你有两个问题了。
   links:
   - name: 官网
     url: https://ihateregex.io/
@@ -117,9 +115,7 @@
   - 有趣
   date: "2024/04"
   description: 将打字的过程转换成动图，见字如面。
-  links:
-  - name: 官网
-    url: https://msgif.net/
+  links: https://msgif.net/
 
 - title: Marked.cc
   image: /img/Marked.cc.png
@@ -145,9 +141,7 @@
   - 想法
   date: "2024/04"
   description: 寻找快速增长与有潜力的科技话题。
-  links:
-  - name: 官网
-    url: https://explodingtopics.com/
+  links: https://explodingtopics.com/
 
 - title: 100font.com
   image: /img/100font.com.png
@@ -158,9 +152,7 @@
   - 字体
   date: "2024/04"
   description: 一个专门收集整理“免费商用字体”的网站，有大量中文字体。
-  links:
-  - name: 官网
-    url: https://www.100font.com
+  links: https://www.100font.com
 
 - title: Recompressor
   image: /img/Recompressor.png
@@ -171,7 +163,7 @@
   - 工具
   - 图片
   date: "2024/04"
-  description: 智能压缩技术，无需上传服务器即可优化图片质量与尺寸，多种图像工具。
+  description: 智能压缩技术，优化图片质量与尺寸，多种图像工具。
   links:
   - name: 压缩
     url: https://zh.recompressor.com/
@@ -203,10 +195,8 @@
   - 网页
   - 图标
   date: "2024/04"
-  description: 轻松设计生成标准的全平台应用图标。
-  links:
-  - name: 官网
-    url: https://icon.kitchen
+  description: 轻松生成标准的全平台应用图标。
+  links: https://icon.kitchen
 
 - title: Game-icons.net
   image:
@@ -216,6 +206,4 @@
   - 图标
   date: "2024/04"
   description: 4千 CC 授权免费矢量游戏图标。
-  links:
-  - name: 官网
-    url: https://game-icons.net/
+  links: https://game-icons.net/

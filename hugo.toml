@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://ws.0000cd.com/'
 languageCode = 'zh-CN'
 title = '狼集 - Wolf Set | 狼牌工作网址导航 - 0000CD'
 theme = 'bluf'
