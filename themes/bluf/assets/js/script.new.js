@@ -1,14 +1,14 @@
 // navbar menu
 document.addEventListener('click', function (event) {
     // 获取所有菜单
-    var menuGroups = document.querySelectorAll('.filter-button-group');
-    var isMenuToggle = event.target.matches('.menu-toggle');
+    const menuGroups = document.querySelectorAll('.filter-button-group');
+    const isMenuToggle = event.target.matches('.menu-toggle');
 
     // 如果点击的是菜单触发按钮
     if (isMenuToggle) {
-        var toggleId = event.target.id;
-        var filterGroupId = 'filter-group-' + toggleId.split('-')[2];
-        var filterGroup = document.getElementById(filterGroupId);
+        const toggleId = event.target.id;
+        const filterGroupId = 'filter-group-' + toggleId.split('-')[2];
+        const filterGroup = document.getElementById(filterGroupId);
 
         // 如果当前菜单未展开，则关闭所有菜单，并展开当前点击的菜单
         if (!filterGroup.classList.contains('active')) {
@@ -25,7 +25,7 @@ document.addEventListener('click', function (event) {
     } else {
         // 如果点击的不是菜单触发按钮
         // 检查点击是否发生在已展开的菜单内部
-        var isInsideMenu = Array.from(menuGroups).some(function (menu) {
+        const isInsideMenu = Array.from(menuGroups).some(function (menu) {
             return menu.contains(event.target);
         });
 
@@ -38,15 +38,13 @@ document.addEventListener('click', function (event) {
     }
 });
 
-
-
 // Isotope
-var buttonFilters = {};
+let buttonFilters = {};
 
 // Update all buttons matching the filter
 function updateButtons(filterValue, isAdd) {
     // Select all buttons that match the filter value
-    var buttons = document.querySelectorAll(`.filter-btn[data-filter="${filterValue}"]`);
+    const buttons = document.querySelectorAll(`.filter-btn[data-filter="${filterValue}"]`);
     // Update class for all matching buttons
     buttons.forEach(function (button) {
         if (isAdd) {
@@ -59,28 +57,57 @@ function updateButtons(filterValue, isAdd) {
 
 // Flatten object into a string of filters
 function concatValues(obj) {
-    var value = '';
-    for (var prop in obj) {
+    let value = '';
+    for (const prop in obj) {
         value += obj[prop].join('');
     }
     return value;
 }
 
 // initialize Isotope
-var grid = document.querySelector('.grid');
-var iso = new Isotope(grid, {
+const grid = document.querySelector('.grid');
+const iso = new Isotope(grid, {
     itemSelector: '.grid-item',
     masonry: {
-        columnWidth: 310,
+        columnWidth: 255,
         fitWidth: true,
-        gutter: 10
+        gutter: 16
     }
 });
 
-// use imagesLoaded, trigger layout after each image loads
-imagesLoaded(grid).on('progress', function (instance, image) {
-    iso.layout();
+// Handle lazy-loading images
+const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+lazyImages.forEach((img) => {
+    img.addEventListener('load', () => {
+        iso.layout(); // Trigger re-layout after each lazy-loaded image loads
+    });
 });
+
+
+// // use imagesLoaded, trigger layout after each image loads
+// imagesLoaded(grid).on('progress', function (instance, image) {
+//     iso.layout();
+// });
+
+
+// Sync top-bar-inner width with grid width
+const topBarElement = document.querySelector('.top-bar-inner');
+
+if (grid && topBarElement) {
+    const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+            const windowWidth = window.innerWidth;
+            const minWidth = windowWidth * 0.9; // 90% of window width
+            const newWidth = Math.max(entry.contentRect.width, minWidth);
+            topBarElement.style.width = newWidth + 'px';
+        }
+    });
+
+    resizeObserver.observe(grid);
+} else {
+    console.error('Grid or top-bar-inner element not found!');
+}
+
 
 // Use event delegation for all filter button groups
 document.querySelectorAll('.filter-button-group').forEach(function (group) {
@@ -88,10 +115,10 @@ document.querySelectorAll('.filter-button-group').forEach(function (group) {
         if (!event.target.matches('.filter-btn')) {
             return; // Skip clicks that are not on buttons
         }
-        var filterValue = event.target.getAttribute('data-filter');
-        var filterGroup = event.target.getAttribute('data-filter-group');
+        const filterValue = event.target.getAttribute('data-filter');
+        const filterGroup = event.target.getAttribute('data-filter-group');
         // Check if filter is already in the buttonFilters
-        var isFilterActive = buttonFilters[filterGroup] && buttonFilters[filterGroup].includes(filterValue);
+        const isFilterActive = buttonFilters[filterGroup]?.includes(filterValue);
         // Toggle filter in buttonFilters
         if (isFilterActive) {
             buttonFilters[filterGroup] = buttonFilters[filterGroup].filter(f => f !== filterValue);
@@ -103,13 +130,12 @@ document.querySelectorAll('.filter-button-group').forEach(function (group) {
         }
 
         // Combine filters
-        var filterString = concatValues(buttonFilters);
+        const filterString = concatValues(buttonFilters);
 
         // Apply filter without causing layout to be called again
         iso.arrange({ filter: filterString });
     });
 });
-
 
 // Reset filters and update buttons
 function resetFilters() {
@@ -128,13 +154,13 @@ function resetFilters() {
 
 // Show or hide the reset button with animation
 function showResetButton() {
-    var hasActiveFilters = Object.keys(buttonFilters).some(key => buttonFilters[key].length > 0);
-    var resetButton = document.getElementById('reset-filters');
+    const hasActiveFilters = Object.keys(buttonFilters).some(key => buttonFilters[key].length > 0);
+    const resetButton = document.getElementById('reset-filters');
     if (hasActiveFilters) {
         resetButton.style.display = 'block'; // Make sure the button is visible before adding 'show'
 
         // Trigger a reflow to ensure the animation plays
-        resetButton.offsetWidth;
+        (() => resetButton.offsetWidth)();
 
         resetButton.classList.add('show');
     } else {
@@ -170,7 +196,7 @@ showResetButton();
 // If there's other code that clears filters, make sure to call showResetButton() after that action
 // Function to shake the reset button
 function shakeResetButton() {
-    var resetButton = document.getElementById('reset-filters');
+    const resetButton = document.getElementById('reset-filters');
     resetButton.classList.add('shake');
     resetButton.addEventListener('animationend', function () {
         resetButton.classList.remove('shake');

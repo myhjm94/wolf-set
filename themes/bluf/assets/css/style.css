@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    padding-top: 60px;
+    padding-top: 70px;
     background-color: #f3f4f6;
     color: #020617;
     font-family: Palatino, Palatino Linotype, Palatino LT STD, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
@@ -52,6 +52,13 @@ body a {
 
 .grid-item-img {
     max-width: 255px;
+    background: #fafafa;  /* 加载时的背景色 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.grid-item-img.loaded {
+    opacity: 1;
 }
 
 .grid-item-title {
@@ -130,7 +137,7 @@ body a {
     top: 0;
     left: 0;
     width: 100%;
-    /* background: #f3f4f6; */
+    background: #f3f4f6E6;
     color: #020617;
     padding: 10px 0;
     z-index: 1000;
@@ -144,6 +151,7 @@ body a {
 
 .top-bar-logo {
     height: 40px;
+    width: 40px;
     vertical-align: middle;
     margin-right: 10px;
 }
@@ -294,7 +302,7 @@ button.filter-btn.is-checked {
 /* 适配移动端顶栏 */
 @media screen and (max-width: 768px) {
     body {
-        padding-top: 100px;
+        padding-top: 120px;
     }
 
     .menu-container {

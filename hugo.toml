@@ -37,3 +37,6 @@ theme = 'bluf'
 [outputFormats.RSS]
   mediatype = "application/rss+xml"
   baseName = "feed"
+
+[minify]
+  minifyOutput = true
