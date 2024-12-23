@@ -21,6 +21,7 @@ theme = 'bluf'
 ]
   author = "0000CD.COM & 逊狼"
   pagename = "狼集 Wolf Set"
+  alias ="狼牌网址导航"
   enableUmami = true
   UmamiLink = "https://eu.umami.is/script.js"
   UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
