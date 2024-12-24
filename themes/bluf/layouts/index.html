@@ -17,7 +17,7 @@
 
     {{ $style := resources.Get "css/style.css" }}
     {{ $secureCSS := $style | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $secureCSS.RelPermalink }}" integrity="{{ $secureCSS.Data.Integrity }}">
+    <link rel="preload" href="{{ $secureCSS.RelPermalink }}" as="style" integrity="{{ $secureCSS.Data.Integrity }}" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
 
     {{ if .Site.Params.enableUmami }}
     <script defer src="{{ .Site.Params.UmamiLink }}" data-website-id="{{ .Site.Params.UmamiID }}"></script>
@@ -73,8 +73,6 @@
             
         </div>
     </div>
-
-    <script src="/js/isotope.pkgd.min.js"></script>
 
     <div class="grid">
         {{ range .Site.Data.cards }}
@@ -155,6 +153,8 @@
     </div>
 
     <button id="reset-filters">✕</button>
+
+    <script src="/js/isotope.pkgd.min.js" ></script>
 
     {{ $js := resources.Get "js/script.new.js" }}
     {{ $secureJS := $js | resources.Minify | resources.Fingerprint }}

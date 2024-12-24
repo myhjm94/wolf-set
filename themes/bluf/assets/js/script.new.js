@@ -1,3 +1,22 @@
+// initialize Isotope
+const grid = document.querySelector('.grid');
+const iso = new Isotope(grid, {
+    itemSelector: '.grid-item',
+    masonry: {
+        columnWidth: 255,
+        fitWidth: true,
+        gutter: 16
+    }
+});
+
+// Handle lazy-loading images
+const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+lazyImages.forEach((img) => {
+    img.addEventListener('load', () => {
+        iso.layout(); // Trigger re-layout after each lazy-loaded image loads
+    });
+});
+
 // navbar menu
 document.addEventListener('click', function (event) {
     // 获取所有菜单
@@ -64,50 +83,8 @@ function concatValues(obj) {
     return value;
 }
 
-// initialize Isotope
-const grid = document.querySelector('.grid');
-const iso = new Isotope(grid, {
-    itemSelector: '.grid-item',
-    masonry: {
-        columnWidth: 255,
-        fitWidth: true,
-        gutter: 16
-    }
-});
 
-// Handle lazy-loading images
-const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-lazyImages.forEach((img) => {
-    img.addEventListener('load', () => {
-        iso.layout(); // Trigger re-layout after each lazy-loaded image loads
-    });
-});
-
-
-// // use imagesLoaded, trigger layout after each image loads
-// imagesLoaded(grid).on('progress', function (instance, image) {
-//     iso.layout();
-// });
-
-
-// // Sync top-bar-inner width with grid width
-// const topBarElement = document.querySelector('.top-bar-inner');
-
-// if (grid && topBarElement) {
-//     const resizeObserver = new ResizeObserver((entries) => {
-//         for (let entry of entries) {
-//             const windowWidth = window.innerWidth;
-//             const minWidth = windowWidth * 0.80;
-//             const newWidth = Math.max(entry.contentRect.width, minWidth);
-//             topBarElement.style.width = newWidth + 'px';
-//         }
-//     });
-
-//     resizeObserver.observe(grid);
-// } else {
-//     console.error('Grid or top-bar-inner element not found!');
-// }
-
+// 设置top-bar宽度
 const topBarElement = document.querySelector('.top-bar-inner');
 let shouldIgnoreResize = false;
 
