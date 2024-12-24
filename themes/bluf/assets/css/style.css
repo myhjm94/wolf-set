@@ -21,6 +21,8 @@ body a {
 .grid {
     margin: 0 auto;
     padding: 20px 0 20px 0;
+    width: 100%;
+    height: 100%;
 }
 
 .grid a:visited {
