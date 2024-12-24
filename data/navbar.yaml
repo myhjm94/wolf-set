@@ -18,10 +18,15 @@ categories:
   - 蓝💙
   - 紫💜
   - 灰🩶
-  # ... 根据需要添加更多标签 ...
 
 external_links:
 - url: "https://www.travellings.cn/go.html"
   name: "开往"
 - url: "/posts/about/"
   name: "关于狼集"
+
+hot_tag:
+  - 桌面
+  - 移动
+  - 网页
+  - 开源

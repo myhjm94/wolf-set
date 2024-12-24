@@ -1,7 +1,7 @@
 // navbar menu
 document.addEventListener('click', function (event) {
     // 获取所有菜单
-    const menuGroups = document.querySelectorAll('.filter-button-group');
+    const menuGroups = document.querySelectorAll('.filter-button-group'); // 监听.filter-button-group 按钮
     const isMenuToggle = event.target.matches('.menu-toggle');
 
     // 如果点击的是菜单触发按钮
@@ -90,16 +90,59 @@ lazyImages.forEach((img) => {
 // });
 
 
-// Sync top-bar-inner width with grid width
+// // Sync top-bar-inner width with grid width
+// const topBarElement = document.querySelector('.top-bar-inner');
+
+// if (grid && topBarElement) {
+//     const resizeObserver = new ResizeObserver((entries) => {
+//         for (let entry of entries) {
+//             const windowWidth = window.innerWidth;
+//             const minWidth = windowWidth * 0.80;
+//             const newWidth = Math.max(entry.contentRect.width, minWidth);
+//             topBarElement.style.width = newWidth + 'px';
+//         }
+//     });
+
+//     resizeObserver.observe(grid);
+// } else {
+//     console.error('Grid or top-bar-inner element not found!');
+// }
+
 const topBarElement = document.querySelector('.top-bar-inner');
+let shouldIgnoreResize = false;
+
+// 添加按钮事件监听
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        shouldIgnoreResize = true;
+        setTimeout(() => {
+            shouldIgnoreResize = false;
+        }, 1000); // 1秒后恢复监听
+    });
+});
 
 if (grid && topBarElement) {
     const resizeObserver = new ResizeObserver((entries) => {
+        // 如果在忽略期间,直接返回
+        if (shouldIgnoreResize) {
+            console.log(`[${new Date().toLocaleString()}] Resize ignored due to filter button click`);
+            return;
+        }
+        
         for (let entry of entries) {
             const windowWidth = window.innerWidth;
-            const minWidth = windowWidth * 0.9; // 90% of window width
+            const minWidth = windowWidth * 0.80;
             const newWidth = Math.max(entry.contentRect.width, minWidth);
             topBarElement.style.width = newWidth + 'px';
+            
+            // console.log(
+            //     `[${new Date().toLocaleString()}] Top bar width changed:\n`,
+            //     `Window width: ${windowWidth}px\n`,
+            //     `Min width: ${minWidth}px\n`, 
+            //     `Grid width: ${entry.contentRect.width}px\n`,
+            //     `New width set to: ${newWidth}px\n`,
+            //     `Reason: ${entry.contentRect.width >= minWidth ? 'Grid width larger than minimum' : 'Using minimum width'}`
+            // );
         }
     });
 
@@ -107,6 +150,7 @@ if (grid && topBarElement) {
 } else {
     console.error('Grid or top-bar-inner element not found!');
 }
+
 
 
 // Use event delegation for all filter button groups

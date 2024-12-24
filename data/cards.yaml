@@ -57,6 +57,16 @@
 
 # 正文
 
+- title: SONOTELLER.AI
+  hex: "#fcac45"
+  tags:
+  - 网页
+  - 声音
+  - AI
+  date: "2024/12"
+  description: 听懂歌的 AI，分析曲风情绪歌词等音乐的一切。
+  links: https://sonoteller.ai/
+
 - title: Wappalyzer
   hex: "#4608AD"
   tags:
