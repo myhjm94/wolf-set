@@ -100,7 +100,7 @@
                             {{ $ratio := div (float $image.Height) $image.Width }}
                             {{ $displayHeight := math.Round (mul $displayWidth $ratio) }}
                             <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
-                                height="{{ $displayHeight }}" alt="{{ $title }}" loading="lazy"
+                                height="{{ $displayHeight }}" alt="" loading="lazy"
                                 onload="this.classList.add('loaded')">
                             {{ break }}
                             {{ end }}
