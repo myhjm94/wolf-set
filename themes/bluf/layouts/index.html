@@ -75,7 +75,8 @@
     </div>
 
     <div class="grid" id="myGrid">
-        {{ range .Site.Data.cards }}
+        {{/*  {{ range .Site.Data.cards }}  */}}
+        {{ range $index, $element := .Site.Data.cards }}
         {{ $title := .title }}
         <article id="{{ .title }}">
             <div class="grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }} 
@@ -98,7 +99,8 @@
                             {{ $ratio := div (float $image.Height) $image.Width }}
                             {{ $displayHeight := math.Round (mul $displayWidth $ratio) }}
                             <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
-                                height="{{ $displayHeight }}" alt="" loading="lazy"
+                                height="{{ $displayHeight }}" alt="" 
+                                {{ if ge $index 5 }}loading="lazy"{{ end }} {{/*前几张卡片的图片没有懒加载*/}}
                                 onload="this.classList.add('loaded')">
                             {{ break }}
                             {{ end }}
