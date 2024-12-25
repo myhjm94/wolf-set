@@ -135,14 +135,14 @@ a {
 
 .grid-item-tag {
     background: var(--bg-primary);
-    color:  var(--text-secondary);
+    color: var(--text-secondary);
     border-radius: 3px;
     padding: 2px 5px;
     font-size: 0.75em;
 }
 
 .grid-item-date {
-    color:  var(--text-secondary);
+    color: var(--text-secondary);
     font-size: 0.75em;
 }
 
@@ -291,19 +291,18 @@ button.filter-btn {
 }
 
 button.filter-btn:hover {
-    background-color:  var(--text-secondary);
+    background-color: var(--text-secondary);
     color: var(--cards-white);
 }
 
 button.filter-btn.is-checked {
     background-color: var(--primary-color);
     color: var(--cards-white);
-    ;
 }
 
 .menu-toggle-btn {
     background: var(--bg-primary);
-    color:  var(--text-secondary);
+    color: var(--text-secondary);
 }
 
 
