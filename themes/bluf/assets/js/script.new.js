@@ -1,3 +1,41 @@
+// Isotope
+let buttonFilters = {};
+
+// Update all buttons matching the filter
+function updateButtons(filterValue, isAdd) {
+    // Select all buttons that match the filter value
+    const buttons = document.querySelectorAll(`.filter-btn[data-filter="${filterValue}"]`);
+    // Update class for all matching buttons
+    buttons.forEach(function (button) {
+        if (isAdd) {
+            button.classList.add('is-checked');
+        } else {
+            button.classList.remove('is-checked');
+        }
+    });
+}
+
+// Flatten object into a string of filters
+function concatValues(obj) {
+    let value = '';
+    for (const prop in obj) {
+        value += obj[prop].join('');
+    }
+    return value;
+}
+
+// initialize Isotope
+const grid = document.querySelector('.grid');
+const iso = new Isotope(grid, {
+    itemSelector: '.grid-item',
+    masonry: {
+        columnWidth: 255,
+        fitWidth: true,
+        gutter: 16,
+    }
+});
+
+
 // navbar menu
 document.addEventListener('click', function (event) {
     // 获取所有菜单
@@ -38,42 +76,6 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// Isotope
-let buttonFilters = {};
-
-// Update all buttons matching the filter
-function updateButtons(filterValue, isAdd) {
-    // Select all buttons that match the filter value
-    const buttons = document.querySelectorAll(`.filter-btn[data-filter="${filterValue}"]`);
-    // Update class for all matching buttons
-    buttons.forEach(function (button) {
-        if (isAdd) {
-            button.classList.add('is-checked');
-        } else {
-            button.classList.remove('is-checked');
-        }
-    });
-}
-
-// Flatten object into a string of filters
-function concatValues(obj) {
-    let value = '';
-    for (const prop in obj) {
-        value += obj[prop].join('');
-    }
-    return value;
-}
-
-// initialize Isotope
-const grid = document.querySelector('.grid');
-const iso = new Isotope(grid, {
-    itemSelector: '.grid-item',
-    masonry: {
-        columnWidth: 255,
-        fitWidth: true,
-        gutter: 16
-    }
-});
 
 // Handle lazy-loading images
 const lazyImages = document.querySelectorAll('img[loading="lazy"]');

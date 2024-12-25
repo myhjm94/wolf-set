@@ -32,7 +32,7 @@
         <div class="top-bar-inner">
             <div class="top-bar-title">
                 <a href="{{ .Site.BaseURL }}">
-                    <img class="top-bar-logo" src="/logo.png" alt="Logo">
+                    <img class="top-bar-logo" src="/logo.webp" alt="Logo">
                 </a>
                 <h1 class="top-title" style="font-size: 1em;">{{ .Site.Params.pagename }}</h1>
                 <noscript>{{ .Site.Params.alias }}</noscript>
@@ -74,9 +74,7 @@
         </div>
     </div>
 
-    <script src="/js/isotope.pkgd.min.js"></script>
-
-    <div class="grid">
+    <div class="grid" id="myGrid">
         {{ range .Site.Data.cards }}
         {{ $title := .title }}
         <article id="{{ .title }}">
@@ -156,9 +154,17 @@
 
     <button id="reset-filters">✕</button>
 
+    <script src="/js/isotope.pkgd.min.js"></script>
+
     {{ $js := resources.Get "js/script.new.js" }}
     {{ $secureJS := $js | resources.Minify | resources.Fingerprint }}
     <script src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+    <script>
+        window.addEventListener('load', function() {
+          document.getElementById('myGrid').classList.add('show');
+        });
+    </script>
 
 </body>
 
