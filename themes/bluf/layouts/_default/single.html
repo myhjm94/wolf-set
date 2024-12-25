@@ -2,37 +2,9 @@
 <html lang="{{ .Site.LanguageCode }}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ partial "head.html" . }}
+
     <title>{{ .Title }} - {{ .Site.Title }}</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="{{ .Site.Params.author }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    {{ $style := resources.Get "css/style.css" }}
-    {{ $secureCSS := $style | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $secureCSS.RelPermalink }}" integrity="{{ $secureCSS.Data.Integrity }}">
-    {{ if .Site.Params.enableUmami }}
-    <script defer src="{{ .Site.Params.UmamiLink }}" data-website-id="{{ .Site.Params.UmamiID }}"></script>
-    {{ end }}
-
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme'); 
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (prefersDark) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                }
-            }
-        })();
-    </script>
-
 </head>
 
 <body>
@@ -79,24 +51,7 @@
         </footer>
     </article>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggle = document.getElementById('themeToggle');
-            updateButtonText(document.documentElement.getAttribute('data-theme'));     
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';               
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateButtonText(newTheme);
-            });
-        });
-    
-        function updateButtonText(theme) {
-            const button = document.getElementById('themeToggle');
-            button.textContent = theme === 'dark' ? '⚪' : '⚫';
-        }
-    </script>
+    {{ partial "footer.html" . }}
 
 </body>
 
