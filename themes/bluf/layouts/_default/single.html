@@ -19,6 +19,20 @@
     <script defer src="{{ .Site.Params.UmamiLink }}" data-website-id="{{ .Site.Params.UmamiID }}"></script>
     {{ end }}
 
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme'); 
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            }
+        })();
+    </script>
+
 </head>
 
 <body>
@@ -31,10 +45,16 @@
                 </div>
             <nav class="top-bar-nav">
 
+                <div class="menu-container">
+                    <button class="theme-toggle" id="themeToggle" title="切换深浅配色">
+                        深色模式
+                    </button>
+                </div>
+
                 {{ with .Site.Data.navbar.external_links }}
                 <div class="menu-container">
                     {{ range . }}
-                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener" {{ if $.Site.Params.enableUmami
+                    <a href="{{ .url }}" target="_blank" class="menu-toggle exlink" rel="noopener" {{ if $.Site.Params.enableUmami
                     }}data-umami-event="NAV-{{ .name }}" {{ end }}>{{ .name }}</a>
                     {{ end }}
                 </div>
@@ -58,6 +78,25 @@
 
         </footer>
     </article>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            updateButtonText(document.documentElement.getAttribute('data-theme'));     
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';               
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateButtonText(newTheme);
+            });
+        });
+    
+        function updateButtonText(theme) {
+            const button = document.getElementById('themeToggle');
+            button.textContent = theme === 'dark' ? '⚪' : '⚫';
+        }
+    </script>
 
 </body>
 

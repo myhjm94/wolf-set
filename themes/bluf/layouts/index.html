@@ -23,6 +23,19 @@
     <script defer src="{{ .Site.Params.UmamiLink }}" data-website-id="{{ .Site.Params.UmamiID }}"></script>
     {{ end }}
 
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme'); 
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            }
+        })();
+    </script>
 
 </head>
 
@@ -39,27 +52,36 @@
             </div>
 
             <nav class="top-bar-nav">
-                {{ range .Site.Data.navbar.categories }}
+
                 <div class="menu-container">
-                    <div class="menu-toggle" id="menu-toggle-{{ .id }}">{{ .name }}</div>
-                    <div class="nav-button filter-button-group" id="filter-group-{{ .id }}">
-                        {{ range .tags }}
-                        <button class="filter-btn" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ . }}</button>
-                        {{ end }}
-                    </div>
+                    <button class="theme-toggle" id="themeToggle" title="切换深浅配色">
+                        深色模式
+                    </button>
                 </div>
-                {{ end }}
+                
 
                 {{ with .Site.Data.navbar.external_links }}
                 <div class="menu-container">
                     {{ range . }}
-                    <a href="{{ .url }}" target="_blank" class="menu-toggle" rel="noopener" 
+                    <a href="{{ .url }}" target="_blank" class="menu-toggle exlink" rel="noopener" 
                         {{ if $.Site.Params.enableUmami }}data-umami-event="NAV-{{ .name }}" {{ end }}>
                         {{ .name }}
                     </a>
                     {{ end }}
                 </div>
                 {{ end }}
+
+                {{ range .Site.Data.navbar.categories }}
+                <div class="menu-container">
+                    <div class="menu-toggle" id="menu-toggle-{{ .id }}">{{ .name }}</div>
+                    <div class="nav-button filter-button-group" id="filter-group-{{ .id }}">
+                        {{ range .tags }}
+                        <button class="menu-toggle-btn filter-btn" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ . }}</button>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+
 
                 {{ with .Site.Data.navbar.hot_tag }}
                 <div class="hot-tags-container filter-button-group">
@@ -75,7 +97,6 @@
     </div>
 
     <div class="grid" id="myGrid">
-        {{/*  {{ range .Site.Data.cards }}  */}}
         {{ range $index, $element := .Site.Data.cards }}
         {{ $title := .title }}
         <article id="{{ .title }}">
@@ -166,6 +187,25 @@
         window.addEventListener('load', function() {
           document.getElementById('myGrid').classList.add('show');
         });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            updateButtonText(document.documentElement.getAttribute('data-theme'));     
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';               
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateButtonText(newTheme);
+            });
+        });
+    
+        function updateButtonText(theme) {
+            const button = document.getElementById('themeToggle');
+            button.textContent = theme === 'dark' ? '⚪' : '⚫';
+        }
     </script>
 
 </body>
