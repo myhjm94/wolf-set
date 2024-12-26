@@ -438,20 +438,8 @@ button.filter-btn.is-checked {
     align-items: center;
 }
 
-/* 版权 */
-.site-footer {
-    position: fixed;
-    width: 100%;
-    height: 40px;
-    bottom: 10px;
+.post-footer {
+    padding: 20px;
     text-align: center;
-    padding: 10px 0;
-    font-size: 0.75em;
-    z-index: -1;
-}
-
-.site-footer img {
-    vertical-align: middle;
-    height: 14px;
-    margin-left: 3px;
+    line-height: 1.5;
 }

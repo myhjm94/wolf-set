@@ -24,13 +24,10 @@ external_links:
   name: "开往"
 - url: "/posts/about/"
   name: "关于狼集"
-- url: "/posts/about/"
-  name: "关于狼集"
-- url: "/posts/about/"
-  name: "关于狼集"
   
 hot_tag:
-  - 桌面
-  - 移动
-  - 网页
+  - AI
+  - 推荐
+  - 开发
+  - 有趣
   - 开源

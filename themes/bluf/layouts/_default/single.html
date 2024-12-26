@@ -46,10 +46,15 @@
             {{ .Content }}
         </section>
 
-        <footer>
 
-        </footer>
+            <footer class="post-footer">
+                {{ partial "cc.html" . }}
+                 <a href="/">访问【首页】发现更多… </a> 
+            </footer>
+
     </article>
+
+
 
     {{ partial "footer.html" . }}
 
