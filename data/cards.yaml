@@ -155,6 +155,50 @@
 
 # Legacy
 
+- title: CSS Diner
+  hex: "#2e2a23"
+  tags:
+  - 网页
+  - 开发
+  - 开源
+  date: "2024/04"
+  description: 练习 CSS 选择器小游戏。
+  links:
+  - name: 官网
+    url: https://flukeout.github.io/
+  - name: Github
+    url: https://github.com/flukeout/css-diner
+
+- title: Humane by Design
+  hex: "#14151d"
+  tags:
+  - 网页
+  - 设计
+  - 想法
+  date: "2024/04"
+  description: 人性化的数字产品和服务指南。
+  links: https://lawsofux.com/
+
+- title: Laws of UX
+  hex: "#0d1e26"
+  tags:
+  - 网页
+  - 设计
+  - 想法
+  date: "2024/04"
+  description: 最佳用户体验 UX 法则合集。
+  links: https://lawsofux.com/
+
+- title: Checklist Design
+  hex: "#5e4dcd"
+  tags:
+  - 网页
+  - 设计
+  - 开发
+  date: "2024/04"
+  description: 各类页面、组件、流程、设计、品牌等检查清单。
+  links: https://www.checklist.design/
+
 - title: Method of Action
   hex: "#333647"
   tags:
@@ -167,10 +211,10 @@
   links:
   - name: 官网
     url: https://method.ac/
-  - name: 布尔运算
-    url: https://boolean.method.ac/
-  - name: 贝塞尔曲线
-    url: https://bezier.method.ac/
+  - name: Github
+    url: https://github.com/methodofaction/Method-Draw
+  - name: 赞助
+    url: https://method.ac/donate/
 
 - title: Unsplash
   hex: "#000000"

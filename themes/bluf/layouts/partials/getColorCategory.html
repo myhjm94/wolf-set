@@ -48,6 +48,8 @@
 {{- if le $saturation 0.2 -}}
   {{- $result = "gray" -}}
 {{- else -}}
+
+
   {{/* 根据 Hue 值分类颜色 */}}
   {{- if or (and (ge $hue 0) (lt $hue 15)) (and (ge $hue 345) (lt $hue 360)) -}}
     {{- $result = "red" -}}

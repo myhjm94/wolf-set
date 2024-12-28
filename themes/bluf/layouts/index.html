@@ -130,9 +130,9 @@
                         </a>
 
                         {{ if reflect.IsSlice .links }}
-                        {{ if gt (len .links) 1 }}
+                        {{ if gt (len .links) 2 }}
                         <nav class="grid-item-links">
-                            {{ range .links }}
+                            {{ range after 1 .links }}
                             <a href="{{ .url }}" target="_blank" rel="noopener" 
                                 {{ if $.Site.Params.enableUmami}}data-umami-event="LINK-{{ $title }}-{{ .name }}" {{ end }}>
                                 {{ .name }}
