@@ -36,11 +36,52 @@ const iso = new Isotope(grid, {
 });
 
 
-// navbar menu
+// // navbar menu
+// document.addEventListener('click', function (event) {
+//     // 获取所有菜单
+//     const menuGroups = document.querySelectorAll('.filter-button-group'); // 监听.filter-button-group 按钮
+//     const isMenuToggle = event.target.matches('.menu-toggle');
+
+//     // 如果点击的是菜单触发按钮
+//     if (isMenuToggle) {
+//         const toggleId = event.target.id;
+//         const filterGroupId = 'filter-group-' + toggleId.split('-')[2];
+//         const filterGroup = document.getElementById(filterGroupId);
+
+//         // 如果当前菜单未展开，则关闭所有菜单，并展开当前点击的菜单
+//         if (!filterGroup.classList.contains('active')) {
+//             // 关闭所有菜单
+//             menuGroups.forEach(function (menu) {
+//                 menu.classList.remove('active');
+//             });
+//             // 展开点击的菜单
+//             filterGroup.classList.add('active');
+//         } else {
+//             // 如果当前菜单已展开，再次点击则关闭
+//             filterGroup.classList.remove('active');
+//         }
+//     } else {
+//         // 如果点击的不是菜单触发按钮
+//         // 检查点击是否发生在已展开的菜单内部
+//         const isInsideMenu = Array.from(menuGroups).some(function (menu) {
+//             return menu.contains(event.target);
+//         });
+
+//         // 如果点击的不是菜单内部，关闭所有菜单
+//         if (!isInsideMenu) {
+//             menuGroups.forEach(function (menu) {
+//                 menu.classList.remove('active');
+//             });
+//         }
+//     }
+// });
+
+
 document.addEventListener('click', function (event) {
     // 获取所有菜单
-    const menuGroups = document.querySelectorAll('.filter-button-group'); // 监听.filter-button-group 按钮
-    const isMenuToggle = event.target.matches('.menu-toggle');
+    const menuGroups = document.querySelectorAll('.filter-button-group');
+    // 检查ID是否包含menu-toggle
+    const isMenuToggle = event.target.id && event.target.id.includes('menu-toggle');
 
     // 如果点击的是菜单触发按钮
     if (isMenuToggle) {
@@ -127,7 +168,7 @@ if (grid && topBarElement) {
     const resizeObserver = new ResizeObserver((entries) => {
         // 如果在忽略期间,直接返回
         if (shouldIgnoreResize) {
-            console.log(`[${new Date().toLocaleString()}] Resize ignored due to filter button click`);
+            // console.log(`[${new Date().toLocaleString()}] Resize ignored due to filter button click`);
             return;
         }
         
