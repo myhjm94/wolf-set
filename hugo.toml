@@ -42,11 +42,9 @@ theme = 'bluf'
   baseName = "feed"
 
 
-
 [markup]
 [markup.highlight]
     style = 'gruvbox'
-    lineNos = true
 
 [minify]
   minifyOutput = true
