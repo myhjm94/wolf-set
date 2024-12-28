@@ -7,6 +7,7 @@
     <title>{{ .Site.Title }}</title>
     <meta name="description" content="{{ .Site.Params.description }}" />
     <meta name="keywords" content="{{ range .Site.Params.keywords }}{{ . }},{{ end }}" />
+
 </head>
 
 <body>
@@ -159,7 +160,38 @@
         });
     </script>
 
+    {{ if .Site.Params.greetings }}
+    <div class="greeting-widget">
+        <div class="avatar">
+            <img src="avatar.webp" alt="Avatar">
+        </div>
+        <div class="message">
+            <span id="random-greeting"></span>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const greetings = {{ .Site.Params.greetings }};
+            const widget = document.querySelector('.greeting-widget');
+            const greetingEl = document.getElementById('random-greeting');
+            
+            // 随机选择一条问候语
+            const randomIndex = Math.floor(Math.random() * greetings.length);
+            greetingEl.textContent = greetings[randomIndex];
+            
+            setTimeout(() => {
+                widget.classList.add('show');
+            }, 500);
+
+            setTimeout(() => {
+                widget.classList.remove('show');
+            }, 3500);
+        });
+    </script>
+
     {{ partial "footer.html" . }}
+
+{{ end }}
 
 </body>
 

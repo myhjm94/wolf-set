@@ -81,7 +81,7 @@ document.addEventListener('click', function (event) {
     // 获取所有菜单
     const menuGroups = document.querySelectorAll('.filter-button-group');
     // 检查ID是否包含menu-toggle
-    const isMenuToggle = event.target.id && event.target.id.includes('menu-toggle');
+    const isMenuToggle = event.target?.id?.includes('menu-toggle');
 
     // 如果点击的是菜单触发按钮
     if (isMenuToggle) {
