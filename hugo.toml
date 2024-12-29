@@ -28,6 +28,9 @@ theme = 'bluf'
   UmamiLink = "https://eu.umami.is/script.js"
   UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
 
+  lightColor = "#0000cd" # 浅色强调色，推荐较深
+  darkColor = "#fafafa" # 深色强调色，推荐较浅
+
   greetings = [
     "你好朋友，你好世界 🎉",
     "嗷~ 记得早点休息 🌛",

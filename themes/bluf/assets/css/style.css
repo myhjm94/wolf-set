@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #0000cd;
+    --primary-color: {{ .Site.Params.lightColor }};
     --text-color: #020617;
     --text-secondary: #52525b;
     --bg-primary: #f3f4f6;
@@ -10,7 +10,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-        --primary-color: #fafafa;
+        --primary-color: {{ .Site.Params.darkColor }};
         --text-color: #f4f4f5;
         --text-secondary: #d4d4d8;
         --bg-primary: #18181b;
@@ -21,7 +21,7 @@
 }
 
 [data-theme="dark"] {
-    --primary-color: #fafafa;
+    --primary-color: {{ .Site.Params.darkColor }};
     --text-color: #f4f4f5;
     --text-secondary: #d4d4d8;
     --bg-primary: #18181b;
