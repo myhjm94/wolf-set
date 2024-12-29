@@ -54,7 +54,7 @@
                 {{ end }}
 
 
-                {{ with .Site.Data.navbar.hot_tag }}
+                {{ with .Site.Data.navbar.hot_tags }}
                 <div class="hot-tags-container filter-button-group">
                     {{ range . }}
                     <button class="hot-tag filter-btn" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ . }}</button>
