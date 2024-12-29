@@ -1,0 +1,19 @@
+{{/*  {{< total "tags" >}} or {{< total >}}  */}}
+
+{{ $filterTag := .Get 0 }}
+{{ $count := 0 }}
+{{ range site.Data.cards }}
+    {{ if .title }}
+        {{ if $filterTag }}
+            {{ range .tags }}
+                {{ if eq . $filterTag }}
+                    {{ $count = add $count 1 }}
+                    {{ break }}
+                {{ end }}
+            {{ end }}
+        {{ else }}
+            {{ $count = add $count 1 }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ $count }}

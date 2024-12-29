@@ -5,6 +5,11 @@ date: 2024-04-04
 draft: false
 ---
 
+- [这是开源项目，你也可以快速创建**属于你自己的**网址导航。](https://github.com/0000cd/wolf-set)
+
+- [点我访问【**首页**】，浏览共 {{< total >}} 个有趣网址导航，和 {{< total "开源" >}} 个开源项目！](/)
+
+
 ## 狼集 Wolf Set
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=0000cd_wolf-set&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=0000cd_wolf-set)

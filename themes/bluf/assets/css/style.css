@@ -431,6 +431,10 @@ button.filter-btn.is-checked {
     margin-right: auto;
 }
 
+.post a:hover {
+    text-decoration: underline;
+}
+
 .single-head {
     margin: 0 auto;
     display: flex;

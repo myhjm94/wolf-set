@@ -26,6 +26,22 @@
     url: https://store.steampowered.com/curator/45328769-The-Great-Awards-for-Games-With-Creative/sale/tgagwcaga
 
 
+- title: indienova
+  hex: "#ef4c26"
+  tags:
+  - 置顶
+  date: 24/12
+  description: 独立游戏新闻、评测、开发、教学。
+  links:
+  - name: 官网
+    url: https://indienova.com
+  - name: 折扣
+    url: https://indienova.com/steam/discount/4-0-0-0-0-0-0-0-0/p/1
+  - name: 游戏库
+    url: https://indienova.com/gamedb
+  - name: 三相奇谈
+    url: https://store.steampowered.com/app/3084280/_/?l=schinese
+
 - title: 夸克
   hex: "#0d53ff"
   tags:
@@ -39,6 +55,7 @@
     url: https://pan.quark.cn/
   - name: 扫描
     url: https://scan.quark.cn/
+
 
 - title: 阿里云
   hex: "#ff6a00"
