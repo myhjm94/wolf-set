@@ -132,7 +132,7 @@
                         </a>
 
                         {{ if reflect.IsSlice .links }}
-                        {{ if gt (len .links) 2 }}
+                        {{ if gt (len .links) 1 }}
                         <nav class="grid-item-links">
                             {{ range after 1 .links }}
                             <a href="{{ .url }}" target="_blank" rel="noopener" 

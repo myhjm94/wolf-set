@@ -1,7 +1,7 @@
-baseURL = 'https://ws.0000cd.com/' #你的网址
-languageCode = 'zh-CN'
-title = '狼牌网址导航 - 狼集 Wolf Set' #网站名称
-theme = 'bluf'
+baseURL = "https://ws.0000cd.com/" #你的网址
+languageCode = "zh-CN"
+title = "狼牌网址导航 - 狼集 Wolf Set" #网站名称
+theme = "bluf"
 
 [params]
   pagename = "狼集 Wolf Set" #首页标题
@@ -59,7 +59,7 @@ theme = 'bluf'
 
 [markup]
 [markup.highlight]
-    style = 'gruvbox'
+    style = "gruvbox"
 
 [minify]
   minifyOutput = true

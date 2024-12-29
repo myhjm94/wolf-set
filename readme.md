@@ -31,12 +31,12 @@
      - 注意：toml 格式，不要丢失两侧的英文引号`"`。
 
 ```toml
-（hugo.toml 文件部分示例）
+# hugo.toml 文件部分示例:
 baseURL = "https://ws.0000cd.com/" #你的网址
 languageCode = "zh-CN"
 title = "狼牌网址导航 - 狼集 Wolf Set" #网站名称
 theme = "bluf"
-……
+#……
 ```
 
 #### 步骤3：使用 Cloudflare Pages 发布网页
