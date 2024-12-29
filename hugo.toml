@@ -1,10 +1,11 @@
-baseURL = 'https://ws.0000cd.com/'
+baseURL = 'https://ws.0000cd.com/' #你的网址
 languageCode = 'zh-CN'
-title = '狼牌网址导航 - 狼集 Wolf Set'
+title = '狼牌网址导航 - 狼集 Wolf Set' #网站名称
 theme = 'bluf'
 
 [params]
-  description = " 狼集 Wolf Set, 源自“狼牌工作网址导航”，集设计、Markdown、软件、安全、办公必备网址于一体，All in One 最佳选择。"
+  pagename = "狼集 Wolf Set" #首页标题
+  description = " 狼集 Wolf Set, 源自“狼牌工作网址导航”，集设计、Markdown、软件、安全、办公必备网址于一体，All in One 最佳选择。" #SEO，你的网站描述
   keywords = [
   "狼集",
   "Wolf Set",
@@ -18,13 +19,12 @@ theme = 'bluf'
   "办公软件",
   "安全工具",
   "All in One"
-]
-  author = "0000CD.COM & 逊狼"
-  pagename = "狼集 Wolf Set"
-  alias ="狼牌网址导航"
-  license="CC BY-NC 4.0"
+] #SEO，网站关键词
+  author = "0000CD.COM & 逊狼" #SEO，网站作者
+  alias ="狼牌网址导航" #SEO，可删除
+  license="CC BY-NC 4.0" #网站授权信息，https://chooser-beta.creativecommons.org/
 
-  enableUmami = true
+  enableUmami = true #umami 统计相关，没有请 false，https://umami.is/
   UmamiLink = "https://eu.umami.is/script.js"
   UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
 
@@ -38,7 +38,7 @@ theme = 'bluf'
     "Ctrl+D 收藏本站 ⭐",
     "点击【标签】，筛选内容 🔖",
     "点击 ●，切换深浅配色 🐼",
-]
+] #访客随机问候，为空不启用
   
 
 [sitemap]
