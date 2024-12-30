@@ -1,10 +1,10 @@
-# 狼集 Wolf Set
+## 一、简介
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=0000cd_wolf-set&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=0000cd_wolf-set)
+Bluf 是一款慵懒的瀑布流网址导航 Hugo 主题，源于 Wolf Set（[狼集](https://ws.0000cd.com/)） 导航的实践。
 
-宇宙总需要些航天器，“📀各位都好吧？” 让我们路过些互联网小行星。
+与传统“规整”的网址导航相比，自适应瀑布流的 bluf 要随性得多，长短随意，插图随心。更支持标签或颜色便捷筛选，深色模式、网站统计、访客问候等贴心功能。 
 
-![镀金铝板](/assets/img/镀金铝板.png)
+一切只需 YAML 轻松配置。
 
 ## 二、安装
 
@@ -92,6 +92,8 @@ Bluf 主题代码已经过多次测试，可稳定上线使用，但部分代码
   links: https://humanebydesign.com/ #卡片链接
 
 ```
+
+提示：可在写 Markdown 文章时，插入 `{{/*  {{< total "tags" >}}` 或 `{{< total >}}  */}}` 短码统计指定标签或全部导航卡片总数。
 
 <details>
 
