@@ -7,6 +7,8 @@
   date: 24/04
   description: 狼集 Wolf Set：宇宙总需要些航天器，“📀各位都好吧？” 让我们路过些互联网小行星。
   links:
+  - name: 关于
+    url: https://ws.0000cd.com/posts/about/
   - name: GitHub
     url: https://github.com/0000cd/wolf-set
   - name: 网站统计
@@ -22,6 +24,8 @@
   links:
   - name: 官网
     url: https://tgagwcaga.com/
+  - name: 获奖提名
+    url: https://tgagwcaga.com/nominees/
   - name: Steam 特卖！
     url: https://store.steampowered.com/curator/45328769-The-Great-Awards-for-Games-With-Creative/sale/tgagwcaga
 
@@ -183,7 +187,7 @@
   links:
   - name: 官网
     url: https://flukeout.github.io/
-  - name: Github
+  - name: GitHub
     url: https://github.com/flukeout/css-diner
 
 - title: Humane by Design
@@ -228,7 +232,7 @@
   links:
   - name: 官网
     url: https://method.ac/
-  - name: Github
+  - name: GitHub
     url: https://github.com/methodofaction/Method-Draw
   - name: 赞助
     url: https://method.ac/donate/
@@ -284,20 +288,6 @@
   date: "2024/04"
   description: 打字过程转换成动图，见字如面。
   links: https://msgif.net/
-
-- title: Marked.cc
-  hex: "#fecf28"
-  tags:
-  - 网页
-  - 图片
-  - 有趣
-  date: "2024/04"
-  description: 简单的制作一张便签图片。
-  links:
-  - name: 官网
-    url: https://marked.cc/
-  - name: GitHub
-    url: https://github.com/msjaber/marked.cc
 
 - title: Exploding Topics
   hex: "#2e5ce5"
