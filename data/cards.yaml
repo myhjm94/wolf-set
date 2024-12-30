@@ -78,6 +78,59 @@
 
 # 正文
 
+- title: Confetti Therapy
+  hex: "#dd2e44"
+  tags:
+  - 网页
+  - 有趣
+  date: "2024/12"
+  description: 来点“五彩碎纸疗法”放松一下。
+  links: https://confettitherapy.com/
+
+- title: Button Stealer
+  hex: "#ff5100"
+  tags:
+  - 网页
+  - 有趣
+  - 开源
+  date: "2024/12"
+  description: 从路过的每个网页“窃取”按钮，欣赏你的按钮藏品。
+  links:
+  - name: 官网
+    url: https://anatolyzenkov.com/stolen-buttons/button-stealer
+  - name: GitHub
+    url: https://github.com/anatolyzenkov/button-stealer
+  - name: 藏品？
+    url: https://anatolyzenkov.com/stolen-buttons
+
+
+- title: cobalt
+  hex: "#000000"
+  tags:
+  - 网页
+  - 工具
+  - 开源
+  date: "2024/12"
+  description: 一键下载网页上的媒体文件。
+  links:
+  - name: 官网
+    url: https://cobalt.tools/
+  - name: GitHub
+    url: https://github.com/imputnet/cobalt
+  - name: 赞助
+    url: https://liberapay.com/imput
+
+- title: GOODY-2
+  hex: "#EBF38D"
+  tags:
+  - 网页
+  - AI
+  - 有趣
+  date: "2024/12"
+  description: 与世界上“最负责”的 AI 聊天。
+  links: https://www.goody2.ai/chat
+
+
 - title: SONOTELLER.AI
   hex: "#fcac45"
   tags:
