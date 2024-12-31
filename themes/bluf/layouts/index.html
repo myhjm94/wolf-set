@@ -32,7 +32,7 @@
                 
 
                 {{ with .Site.Data.navbar.external_links }}
-                <div class="menu-container">
+                <div class="menu-container external_links">
                     {{ range . }}
                     <a href="{{ .url }}" target="_blank" class="menu-toggle exlink" rel="noopener" 
                         {{ if $.Site.Params.enableUmami }}data-umami-event="NAV-{{ .name }}" {{ end }}>
@@ -43,7 +43,7 @@
                 {{ end }}
 
                 {{ range .Site.Data.navbar.categories }}
-                <div class="menu-container">
+                <div class="menu-container categories">
                     <div class="menu-toggle" id="menu-toggle-{{ .id }}">{{ .name }}</div>
                     <div class="nav-button filter-button-group" id="filter-group-{{ .id }}">
                         {{ range .tags }}
