@@ -221,6 +221,8 @@ confettiEmojis = [ '🥟', '🍜', '🍊', '🧧', '🧨', '🏮', '🎉', '🐺
 
 ## Bluf theme
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=0000cd_wolf-set&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=0000cd_wolf-set)
+
 Bluf 是一款简明扼要的**瀑布流**卡片式 Hugo 主题，非常适合脑暴、作品集、链接导航、等需要**简单分享**的场景。部分代码由 GPT-4o 与 Claude-3.5  AI 协助。
 
 ### 灵感
