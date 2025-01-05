@@ -1,0 +1,31 @@
+<div id="randomUrl" style="display: none;">
+    {{ $urls := slice }} 
+    {{ range $index, $element := .Site.Data.cards }}
+        {{ if reflect.IsSlice .links }}
+            {{ $urls = $urls | append (index .links 0).url }}
+        {{ else }}
+            {{ $urls = $urls | append (.links | safeURL) }}
+        {{ end }}
+    {{ end }}
+    
+    <script>
+        // Inject URLs as a JSON string
+        let urls = {{ $urls | jsonify }};
+        
+        // Parse the JSON string into an array
+        urls = JSON.parse(urls);
+    
+        // Randomly select a URL and redirect after 3 seconds
+        if (urls.length > 0) {
+            const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+            console.log("Randomly selected URL:", randomUrl);
+
+            // Redirect to the random URL after 3 seconds
+            setTimeout(() => {
+                window.location.href = randomUrl;
+            }, 300);
+        } else {
+            console.warn("No URLs available.");
+        }
+    </script>
+</div>
