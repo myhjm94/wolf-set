@@ -94,7 +94,7 @@
                             {{ $displayHeight := math.Round (mul $displayWidth $ratio) }}
                             <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                 height="{{ $displayHeight }}" alt="" 
-                                {{ if ge $index 5 }}loading="lazy"{{ end }} {{/*前几张卡片的图片没有懒加载*/}}
+                                {{ if ge $index 10 }}loading="lazy"{{ end }} {{/*前几张卡片的图片没有懒加载*/}}
                                 onload="this.classList.add('loaded')">
                             {{ break }}
                             {{ end }}
