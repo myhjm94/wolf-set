@@ -92,10 +92,36 @@
                             {{ $displayWidth := 255 }}
                             {{ $ratio := div (float $image.Height) $image.Width }}
                             {{ $displayHeight := math.Round (mul $displayWidth $ratio) }}
-                            <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
-                                height="{{ $displayHeight }}" alt="" 
-                                {{ if ge $index 10 }}loading="lazy"{{ end }} {{/*前几张卡片的图片没有懒加载*/}}
-                                onload="this.classList.add('loaded')">
+                            
+                            {{ if $.Site.Params.gallery }}
+                                {{/* 检查gallery文件夹是否存在且包含文件 */}}
+                                {{ $galleryPath := printf "gallery/%s/*" $title }}
+                                {{ $galleryFiles := resources.Match $galleryPath }}
+                                {{ if and $galleryFiles (gt (len $galleryFiles) 0) }}
+                                    <div class="gallery">
+                                        <a href="{{ $image.RelPermalink }}">
+                                            <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                                height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                                onload="this.classList.add('loaded')">
+                                        </a>
+                                        
+                                        {{ range $galleryFiles }}
+                                        {{ $name := index (split .Name "/") (sub (len (split .Name "/")) 1) }}
+                                        {{ $nameWithoutExt := index (split $name ".") 0 }}
+                                        <a href="{{ .RelPermalink }}" data-caption="{{ $title }} - {{ $nameWithoutExt }}" style="display:none;"></a>
+                                        {{ end }}
+                                    </div>
+                                {{ else }}
+                                    <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                        height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                        onload="this.classList.add('loaded')">
+                                {{ end }}
+                            {{ else }}
+                                <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                    height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                    onload="this.classList.add('loaded')">
+                            {{ end }}
+                            
                             {{ break }}
                             {{ end }}
                             {{ end }}
@@ -163,6 +189,7 @@
     </script>
 
     {{ if .Site.Params.greetings }}
+
     <div class="greeting-widget">
         <div class="avatar">
             <img src="avatar.webp" alt="Avatar">
@@ -171,6 +198,7 @@
             <span id="random-greeting"></span>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const greetings = {{ .Site.Params.greetings }};
@@ -198,9 +226,9 @@
 
 {{ end }}
 
-<script src="/js/js-confetti.js"></script>
 
 {{ with .Site.Params.confettiEmojis }}
+<script src="/js/js-confetti.js"></script>
 <script>
     const jsConfetti = new JSConfetti();
     function showConfetti() {
@@ -211,6 +239,37 @@
             confettiNumber: 30
         });
     }
+</script>
+{{ end }}
+
+{{ if .Site.Params.gallery }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.js"></script>
+
+<script>
+  // 动态加载 CSS 文件的函数
+  function loadCSS(href) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  }
+
+  // 加载 CSS
+  loadCSS('https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.css');
+
+  // 等页面加载完成后执行
+  window.addEventListener('load', function() {
+    // 初始化 baguetteBox
+    baguetteBox.run('.gallery', {
+      afterShow: function() {
+        // 在相册打开后，切换到下一张图片
+        setTimeout(function() {
+          // 延迟 500ms 切换到下一张
+          baguetteBox.showNext();
+        }, 500);
+      }
+    });
+  });
 </script>
 {{ end }}
 

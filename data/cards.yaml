@@ -78,6 +78,21 @@
 
 # 正文
 
+- title: Melatonin
+  hex: "#4285f4"
+  tags:
+  - 网页
+  - 有趣
+  date: "2025/01"
+  description: 测试相册是一款将梦与现实融合在一起的音乐游戏。
+  links: https://store.steampowered.com/app/1585220/Melatonin/
+  gallery:
+  - url:
+  - url:
+  - url:
+
+
+
 - title: DOOM CAPTCHA
   hex: "#4285f4"
   tags:
