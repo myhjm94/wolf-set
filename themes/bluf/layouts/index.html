@@ -97,7 +97,8 @@
                                 {{/* 检查gallery文件夹是否存在且包含文件 */}}
                                 {{ $galleryPath := printf "gallery/%s/*" $title }}
                                 {{ $galleryFiles := resources.Match $galleryPath }}
-                                {{ if and $galleryFiles (gt (len $galleryFiles) 0) }}
+                                {{/*  {{ if and $galleryFiles (gt (len $galleryFiles) 0) }}  */}}
+                                {{ if $galleryFiles }}
                                     <div class="gallery">
                                         <a href="{{ $image.RelPermalink }}">
                                             <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
