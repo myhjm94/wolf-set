@@ -243,7 +243,7 @@
 {{ end }}
 
 {{ if .Site.Params.gallery }}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.js"></script>
+<script src="/js/baguetteBox.min.js"></script>
 
 <script>
   // 动态加载 CSS 文件的函数
@@ -255,7 +255,7 @@
   }
 
   // 加载 CSS
-  loadCSS('https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.css');
+  loadCSS('/css/baguetteBox.min.css');
 
   // 等页面加载完成后执行
   window.addEventListener('load', function() {
