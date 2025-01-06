@@ -98,7 +98,7 @@
                                 {{ $galleryPath := printf "gallery/%s/*" $title }}
                                 {{ $galleryFiles := resources.Match $galleryPath }}
                                 {{/*  {{ if and $galleryFiles (gt (len $galleryFiles) 0) }}  */}}
-                                {{ if $galleryFiles }} {{/*  有问题!  */}}
+                                {{ if resources.Match $galleryPath }} {{/*  有问题!  */}}
                                     <div class="gallery">
                                         <a href="{{ $image.RelPermalink }}">
                                             <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
