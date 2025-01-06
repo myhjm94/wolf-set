@@ -98,7 +98,7 @@
                                 {{ $galleryPath := printf "gallery/%s/*" $title }}
                                 {{ $galleryFiles := resources.Match $galleryPath }}
                                 {{/*  {{ if and $galleryFiles (gt (len $galleryFiles) 0) }}  */}}
-                                {{ if $galleryFiles }}
+                                {{/*  {{ if $galleryFiles }}  */}}
                                     <div class="gallery">
                                         <a href="{{ $image.RelPermalink }}">
                                             <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
@@ -110,7 +110,7 @@
                                         {{ $name := index (split .Name "/") (sub (len (split .Name "/")) 1) }}
                                         {{ $nameWithoutExt := index (split $name ".") 0 }}
                                         <a href="{{ .RelPermalink }}" data-caption="{{ $title }} - {{ $nameWithoutExt }}" style="display:none;"></a>
-                                        {{ end }}
+                                        {{/*  {{ end }}  */}}
                                     </div>
                                 {{ else }}
                                     <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
