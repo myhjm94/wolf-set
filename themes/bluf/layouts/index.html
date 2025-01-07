@@ -106,10 +106,11 @@
                                         {{ $folderName := $folder.Name }}
 
                                         <div class="gallery">
-                                            <a href="{{ $image.RelPermalink }}">
-                                            <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                            <a href="{{ $image.RelPermalink }}" class="cover">
+                                            <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                             height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
-                                            onload="this.classList.add('loaded')">
+                                            onload="this.classList.add('loaded')" title="查看画廊">
+                                            <div class="cover-line" ></div>
                                             </a>
 
                                             {{ $galleryImagesPath := printf "%s/%s" $galleryPath $folderName }}
@@ -121,7 +122,7 @@
                                                 {{- if in $extensions $galleryImageExt -}}
                                                     {{ $galleryImageResource := resources.Get (printf "gallery/%s/%s" $folderName $galleryImage.Name) }}
                                                     {{ $galleryImagePublicPath := printf "%s/%s/%s" $galleryPublicPath $folderName $galleryImage.Name }}
-                                                    <a href="{{ $galleryImageResource.RelPermalink }}" data-gallery-filename="{{ $galleryImage.Name }}" style="display: none;"></a>
+                                                    <a href="{{ $galleryImageResource.RelPermalink }}" data-caption="{{ $title }} - {{ $galleryImage.Name }}" style="display: none;"></a>
                                                 {{- end -}}
                                             {{- end -}}
                                         </div>

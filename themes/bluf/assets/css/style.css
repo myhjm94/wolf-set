@@ -491,3 +491,35 @@ button.filter-btn.is-checked {
 .greeting-widget.show {
     bottom: 20px;
 }
+
+/* 美化相册封面 */
+
+.cover {
+    position: relative;
+    display: inline-block;
+    cursor: zoom-in;
+}
+
+.cover-line {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: var(--bg-primary-top);
+}
+
+.cover-img {
+    position: relative;
+    display: inline-block;
+}
+
+.cover-img {
+    transition: transform 1s ease; 
+}
+
+.cover:hover .cover-img {
+    transform: scale(1.02);
+}
