@@ -98,53 +98,49 @@
                             {{ $displayHeight := math.Round (mul $displayWidth $ratio) }}
 
                             {{ if $.Site.Params.gallery }}
-                            {{ range $folder := $folders }}
-                              {{- if $folder.IsDir -}}
-                                {{ $folderName := $folder.Name }}
-                                {{- if eq (lower $folderName) (lower $title) -}}
+                                {{/* 查找是否存在对应的画廊文件夹 */}}
+                                {{ $matchedFolder := false }}
+                                {{ range $folder := $folders }}
+                                    {{- if and $folder.IsDir (eq (lower $folder.Name) (lower $title)) -}}
+                                        {{ $matchedFolder = true }}
+                                        {{ $folderName := $folder.Name }}
 
-                                <div class="gallery">
+                                        <div class="gallery">
+                                            <a href="{{ $image.RelPermalink }}">
+                                            <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                            height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                            onload="this.classList.add('loaded')">
+                                            </a>
 
-                                    <a href="{{ $image.RelPermalink }}">
+                                            {{ $galleryImagesPath := printf "%s/%s" $galleryPath $folderName }}
+                                            {{ $galleryImageFiles := readDir $galleryImagesPath }}
+
+                                            {{- range $galleryImage := $galleryImageFiles -}}
+                                                {{- $galleryImageExt := path.Ext $galleryImage.Name -}}
+                                                {{- $galleryImageExt := strings.TrimPrefix "." $galleryImageExt -}}
+                                                {{- if in $extensions $galleryImageExt -}}
+                                                    {{ $galleryImageResource := resources.Get (printf "gallery/%s/%s" $folderName $galleryImage.Name) }}
+                                                    {{ $galleryImagePublicPath := printf "%s/%s/%s" $galleryPublicPath $folderName $galleryImage.Name }}
+                                                    <a href="{{ $galleryImageResource.RelPermalink }}" data-gallery-filename="{{ $galleryImage.Name }}" style="display: none;"></a>
+                                                {{- end -}}
+                                            {{- end -}}
+                                        </div>
+                                    {{- end -}}
+                                {{ end }}
+
+                                {{/* 如果没有找到对应的画廊文件夹，则只显示单张图片 */}}
+                                {{ if not $matchedFolder }}
                                     <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
-                                    height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
-                                    onload="this.classList.add('loaded')">
-                                    </a>
+                                        height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                        onload="this.classList.add('loaded')">
+                                {{ end }}
 
-                                  {{ $currentFolder := $folder }}
-                                  {{ $galleryImagesPath := printf "%s/%s" $galleryPath $folderName }}
-                                  {{ $galleryImageFiles := readDir $galleryImagesPath }}
-
-                                    {{- range $galleryImage := $galleryImageFiles -}}
-                                      {{- $galleryImageExt := path.Ext $galleryImage.Name -}}
-                                      {{- $galleryImageExt := strings.TrimPrefix "." $galleryImageExt -}}
-                                      {{- if in $extensions $galleryImageExt -}}
-                                        {{ $galleryImageResource := resources.Get (printf "gallery/%s/%s" $folderName $galleryImage.Name) }}
-                                        {{ $galleryImagePublicPath := printf "%s/%s/%s" $galleryPublicPath $folderName $galleryImage.Name }}
-                                        <a href="{{ $galleryImageResource.RelPermalink }}" data-gallery-filename="{{ $galleryImage.Name }}" style="display: none;"></a>
-                                    {{- end -}}
-
-                                    {{- end -}}
-
-                                </div>
-
-                                {{else}}
-
+                            {{ else }}
                                 <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                     height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                     onload="this.classList.add('loaded')">
-                            
-                                {{- end -}}
-
-                            {{- end -}}
                             {{ end }}
 
-                            {{ else }}
-                            <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
-                                height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
-                                onload="this.classList.add('loaded')">
-                            {{ end }}
-                            
                             {{ break }}
                             {{ end }}
                             {{ end }}
