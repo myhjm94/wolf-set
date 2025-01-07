@@ -106,7 +106,7 @@
                                         {{ $folderName := $folder.Name }}
 
                                         <div class="gallery">
-                                            <a href="{{ $image.RelPermalink }}" class="cover">
+                                            <a href="{{ $image.RelPermalink }}" class="cover" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
                                             <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                             height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                             onload="this.classList.add('loaded')" title="查看画廊">

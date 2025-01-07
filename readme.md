@@ -2,7 +2,7 @@
 
 Bluf 是一款**慵懒**的瀑布流网址导航 Hugo 主题，源于 Wolf Set（[狼集](https://ws.0000cd.com/)） 导航的实践。
 
-与传统“规整”的网址导航相比，**自适应瀑布流**的 bluf 要随性得多，长短随意，插图随心。更支持标签或颜色便捷筛选，深色模式、网站统计、访客问候等贴心功能。
+与传统“规整”的网址导航相比，**自适应瀑布流**的 bluf 要随性得多，长短随意，插图随心。还有标签或颜色**筛选**、**深色**模式、网站统计、访客问候等贴心功能，更支持**多链接、多图画廊**等模式。
 
 一切只需 YAML 轻松配置。
 
@@ -130,12 +130,20 @@ Bluf 主题代码已经过多次测试，可稳定上线使用，但部分代码
     url: https://buymeacoffee.com/neal
 ```
 
-#### 导航卡片配置头图
+#### 导航卡片头图、画廊模式
 
-无需额外配置，只需将与卡片 `title` 名称一致的图片，放入 `assets/img` 文件夹下即可，如 `assets/img/Neal.fun.webp`。支持 jpg、png、gif、webp 格式，建议图片宽度大于 300px，但过大会影响加载速度。
+无需额外配置，只需将与卡片 `title` 名称一致的图片，放入 `assets/img` 文件夹下即可，如 `assets/img/Neal.fun.webp`。支持 jpg、png、gif、webp 格式，建议图片宽度大于 300px，但过大会影响加载速度。提示：可以获取网站的 `Open Graph` 用于插图。
 
-提示：可以获取网站的 `Open Graph` 用于插图。
+请编辑 `hugo.toml`，先 `gallery = true` 开启画廊模式。之后在 `assets/gallery` 创建与卡片 `title` 名称一致的的文件夹（注意特殊符号），并放入多张图片（按文件名排序），再点击卡片头图就能进入画廊模式，浏览多张图片。适合像相册一样分享图片合集使用，如：
 
+```markdown
+- assets
+  - gallery
+    - Humane by Design
+      - a.jpg
+      - 2.webp
+      - Cat.gif
+```
 ---
 
 ### 3.2 标签筛选与导航栏
@@ -240,3 +248,5 @@ Blue + Wolf = Bluf
 
 - `content` 与 `data` 目录下的内容遵循 **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)** 许可协议共享。
 - **Bluf** 主题因集成 **[Isotope](https://isotope.metafizzy.co/license)**，遵守 **GPLv3** 许可协议。
+- 画廊模式：[baguetteBox.js](https://github.com/feimosi/baguetteBox.js)，MIT 协议。
+- 庆祝撒花：[js-confetti](https://github.com/loonywizard/js-confetti)，MIT 协议。
