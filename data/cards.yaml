@@ -35,7 +35,7 @@
   tags:
   - 置顶
   date: 24/12
-  description: 独立游戏新闻、评测、开发、教学。
+  description: 独立游戏新闻、评测、开发、教学。提示，点击图片查看画廊。
   links:
   - name: 官网
     url: https://indienova.com
@@ -77,21 +77,6 @@
     url: https://developer.aliyun.com/plan/student?userCode=chvg06mh
 
 # 正文
-
-- title: Melatonin
-  hex: "#4285f4"
-  tags:
-  - 网页
-  - 有趣
-  date: "2025/01"
-  description: 测试相册是一款将梦与现实融合在一起的音乐游戏。
-  links: https://store.steampowered.com/app/1585220/Melatonin/
-  gallery:
-  - url:
-  - url:
-  - url:
-
-
 
 - title: DOOM CAPTCHA
   hex: "#4285f4"
