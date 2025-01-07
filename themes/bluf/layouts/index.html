@@ -85,6 +85,10 @@
 
                         <div class="grid-item-head">
                             {{ $extensions := slice "jpg" "jpeg" "png" "gif" "webp" }}
+                            {{ $galleryPath := "assets/gallery" }}
+                            {{ $galleryPublicPath := "gallery" }}  
+                            {{ $folders := readDir $galleryPath }}
+
                             {{ range $ext := $extensions }}
                             {{ $imgPath := printf "img/%s.%s" $title $ext }}
                             {{ if (resources.Get $imgPath) }}
@@ -93,21 +97,20 @@
                             {{ $ratio := div (float $image.Height) $image.Width }}
                             {{ $displayHeight := math.Round (mul $displayWidth $ratio) }}
 
-                            <div class="gallery">
-                                
-                            <a href="{{ $image.RelPermalink }}">
-                            <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
-                            height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
-                            onload="this.classList.add('loaded')">
-                            </a>
-
-                            {{ $galleryPath := "assets/gallery" }}
-                            {{ $galleryPublicPath := "gallery" }}  
-                            {{ $folders := readDir $galleryPath }}
+                            {{ if $.Site.Params.gallery }}
                             {{ range $folder := $folders }}
                               {{- if $folder.IsDir -}}
                                 {{ $folderName := $folder.Name }}
                                 {{- if eq (lower $folderName) (lower $title) -}}
+
+                                <div class="gallery">
+
+                                    <a href="{{ $image.RelPermalink }}">
+                                    <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                    height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                    onload="this.classList.add('loaded')">
+                                    </a>
+
                                   {{ $currentFolder := $folder }}
                                   {{ $galleryImagesPath := printf "%s/%s" $galleryPath $folderName }}
                                   {{ $galleryImageFiles := readDir $galleryImagesPath }}
@@ -120,11 +123,26 @@
                                         {{ $galleryImagePublicPath := printf "%s/%s/%s" $galleryPublicPath $folderName $galleryImage.Name }}
                                         <a href="{{ $galleryImageResource.RelPermalink }}" data-gallery-filename="{{ $galleryImage.Name }}" style="display: none;"></a>
                                     {{- end -}}
+
                                     {{- end -}}
 
-                            </div>
+                                </div>
+
+                                {{else}}
+
+                                <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                    height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                    onload="this.classList.add('loaded')">
+                            
                                 {{- end -}}
+
                             {{- end -}}
+                            {{ end }}
+
+                            {{ else }}
+                            <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                onload="this.classList.add('loaded')">
                             {{ end }}
                             
                             {{ break }}
