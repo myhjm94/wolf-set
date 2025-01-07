@@ -520,6 +520,6 @@ button.filter-btn.is-checked {
     transition: transform 1s ease; 
 }
 
-.cover:hover .cover-img {
+#cover:hover .cover-img {
     transform: scale(1.03);
 }
