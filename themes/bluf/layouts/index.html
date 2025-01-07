@@ -75,6 +75,7 @@
                 {{- with .hex -}}
                 {{ partial "getColorCategory" . }}
                 {{- end -}}">
+
                 {{ if reflect.IsSlice .links }}
                 <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" 
                     {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ .title }}" {{ end }}>
@@ -105,8 +106,8 @@
                                         {{ $matchedFolder = true }}
                                         {{ $folderName := $folder.Name }}
 
-                                        <div class="gallery">
-                                            <a href="{{ $image.RelPermalink }}" class="cover" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
+                                        <div class="gallery" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
+                                            <a href="{{ $image.RelPermalink }}" id="cover" >
                                             <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                             height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                             onload="this.classList.add('loaded')" title="查看画廊">
@@ -145,8 +146,6 @@
                             {{ break }}
                             {{ end }}
                             {{ end }}
-
-                            
 
                             <header  class="grid-item-header">
                                 <h2 class="grid-item-title">{{ .title }}</h2>

@@ -494,7 +494,7 @@ button.filter-btn.is-checked {
 
 /* 美化相册封面 */
 
-.cover {
+#cover {
     position: relative;
     display: inline-block;
     cursor: zoom-in;
