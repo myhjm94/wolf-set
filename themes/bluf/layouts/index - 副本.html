@@ -75,6 +75,7 @@
                 {{- with .hex -}}
                 {{ partial "getColorCategory" . }}
                 {{- end -}}">
+
                 {{ if reflect.IsSlice .links }}
                 <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" 
                     {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ .title }}" {{ end }}>
@@ -85,6 +86,10 @@
 
                         <div class="grid-item-head">
                             {{ $extensions := slice "jpg" "jpeg" "png" "gif" "webp" }}
+                            {{ $galleryPath := "assets/gallery" }}
+                            {{ $galleryPublicPath := "gallery" }}  
+                            {{ $folders := readDir $galleryPath }}
+
                             {{ range $ext := $extensions }}
                             {{ $imgPath := printf "img/%s.%s" $title $ext }}
                             {{ if (resources.Get $imgPath) }}
@@ -92,36 +97,52 @@
                             {{ $displayWidth := 255 }}
                             {{ $ratio := div (float $image.Height) $image.Width }}
                             {{ $displayHeight := math.Round (mul $displayWidth $ratio) }}
-                            
+
                             {{ if $.Site.Params.gallery }}
-                                {{/* 检查gallery文件夹是否存在且包含文件 */}}
-                                {{ $galleryPath := printf "gallery/%s/*" $title }}
-                                {{ $galleryFiles := resources.Match $galleryPath }}
-                                {{ if and $galleryFiles (gt (len $galleryFiles) 0) }}
-                                    <div class="gallery">
-                                        <a href="{{ $image.RelPermalink }}">
-                                            <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
-                                                height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
-                                                onload="this.classList.add('loaded')">
-                                        </a>
-                                        
-                                        {{ range $galleryFiles }}
-                                        {{ $name := index (split .Name "/") (sub (len (split .Name "/")) 1) }}
-                                        {{ $nameWithoutExt := index (split $name ".") 0 }}
-                                        <a href="{{ .RelPermalink }}" data-caption="{{ $title }} - {{ $nameWithoutExt }}" style="display:none;"></a>
-                                        {{ end }}
-                                    </div>
-                                {{ else }}
+                                {{/* 查找是否存在对应的画廊文件夹 */}}
+                                {{ $matchedFolder := false }}
+                                {{ range $folder := $folders }}
+                                    {{- if and $folder.IsDir (eq (lower $folder.Name) (lower $title)) -}}
+                                        {{ $matchedFolder = true }}
+                                        {{ $folderName := $folder.Name }}
+
+                                        <div class="gallery" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
+                                            <a href="{{ $image.RelPermalink }}" id="cover" >
+                                            <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                            height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                            onload="this.classList.add('loaded')" title="查看画廊">
+                                            <div class="cover-line" ></div>
+                                            </a>
+
+                                            {{ $galleryImagesPath := printf "%s/%s" $galleryPath $folderName }}
+                                            {{ $galleryImageFiles := readDir $galleryImagesPath }}
+
+                                            {{- range $galleryImage := $galleryImageFiles -}}
+                                                {{- $galleryImageExt := path.Ext $galleryImage.Name -}}
+                                                {{- $galleryImageExt := strings.TrimPrefix "." $galleryImageExt -}}
+                                                {{- if in $extensions $galleryImageExt -}}
+                                                    {{ $galleryImageResource := resources.Get (printf "gallery/%s/%s" $folderName $galleryImage.Name) }}
+                                                    {{ $galleryImagePublicPath := printf "%s/%s/%s" $galleryPublicPath $folderName $galleryImage.Name }}
+                                                    <a href="{{ $galleryImageResource.RelPermalink }}" data-caption="{{ $title }} - {{ $galleryImage.Name }}" style="display: none;"></a>
+                                                {{- end -}}
+                                            {{- end -}}
+                                        </div>
+                                    {{- end -}}
+                                {{ end }}
+
+                                {{/* 如果没有找到对应的画廊文件夹，则只显示单张图片 */}}
+                                {{ if not $matchedFolder }}
                                     <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                         height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                         onload="this.classList.add('loaded')">
                                 {{ end }}
+
                             {{ else }}
                                 <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                     height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                     onload="this.classList.add('loaded')">
                             {{ end }}
-                            
+
                             {{ break }}
                             {{ end }}
                             {{ end }}

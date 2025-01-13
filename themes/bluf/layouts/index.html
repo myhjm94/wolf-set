@@ -84,6 +84,9 @@
                         {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ .title }}" {{ end }}>
                         {{ end }}
 
+
+                        {{ $media := .media | default false }}
+
                         <div class="grid-item-head">
                             {{ $extensions := slice "jpg" "jpeg" "png" "gif" "webp" }}
                             {{ $galleryPath := "assets/gallery" }}
@@ -107,12 +110,22 @@
                                         {{ $folderName := $folder.Name }}
 
                                         <div class="gallery" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
-                                            <a href="{{ $image.RelPermalink }}" id="cover" >
+                                            <a href="{{ $image.RelPermalink }}" class="glightbox" data-gallery="gallery-{{ $title }}" id="cover" >
                                             <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                             height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                             onload="this.classList.add('loaded')" title="查看画廊">
                                             <div class="cover-line" ></div>
                                             </a>
+
+                                            {{ if $media }}
+                                            {{ if reflect.IsSlice $media }}
+                                            {{ range $media }}
+                                            <a href="{{ .url | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                            {{ end }}
+                                            {{ else }}
+                                            <a href="{{ $media }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                            {{ end }}
+                                            {{ end }}
 
                                             {{ $galleryImagesPath := printf "%s/%s" $galleryPath $folderName }}
                                             {{ $galleryImageFiles := readDir $galleryImagesPath }}
@@ -123,7 +136,7 @@
                                                 {{- if in $extensions $galleryImageExt -}}
                                                     {{ $galleryImageResource := resources.Get (printf "gallery/%s/%s" $folderName $galleryImage.Name) }}
                                                     {{ $galleryImagePublicPath := printf "%s/%s/%s" $galleryPublicPath $folderName $galleryImage.Name }}
-                                                    <a href="{{ $galleryImageResource.RelPermalink }}" data-caption="{{ $title }} - {{ $galleryImage.Name }}" style="display: none;"></a>
+                                                    <a href="{{ $galleryImageResource.RelPermalink }}" class="glightbox" data-gallery="gallery-{{ $title }}" data-caption="{{ $title }} - {{ $galleryImage.Name }}" style="display: none;"></a>
                                                 {{- end -}}
                                             {{- end -}}
                                         </div>
@@ -263,36 +276,35 @@
 </script>
 {{ end }}
 
+
 {{ if .Site.Params.gallery }}
-<script src="/js/baguetteBox.min.js"></script>
-
 <script>
-  // 动态加载 CSS 文件的函数
-  function loadCSS(href) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    document.head.appendChild(link);
-  }
+    // 动态加载 CSS
+    const linkElement = document.createElement('link');
+    linkElement.rel = 'stylesheet';
+    linkElement.href = 'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css';
+    document.head.appendChild(linkElement);
 
-  // 加载 CSS
-  loadCSS('/css/baguetteBox.min.css');
+    // 动态加载 JS
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js';
+    script.onload = () => {
+        // JS加载完成后初始化 GLightbox
+        const lightbox = GLightbox({
+            loop: true,
+        });
 
-  // 等页面加载完成后执行
-  window.addEventListener('load', function() {
-    // 初始化 baguetteBox
-    baguetteBox.run('.gallery', {
-      afterShow: function() {
-        // 在相册打开后，切换到下一张图片
-        setTimeout(function() {
-          // 延迟 500ms 切换到下一张
-          baguetteBox.showNext();
-        }, 500);
-      }
-    });
-  });
+        // 监听灯箱打开事件
+        lightbox.on('open', () => {
+            setTimeout(() => {
+                lightbox.nextSlide();
+            }, 500); // 延迟500毫秒后自动跳到下一页，可根据需求调整时间
+        });
+    };
+    document.head.appendChild(script);
 </script>
 {{ end }}
+
 
 </body>
 
