@@ -336,8 +336,6 @@
     {{ if eq hugo.Environment "production" }}
     {{ if $.Site.Params.enableUmami }}
 
-    if (window.location.hostname !== '{{ .Site.BaseURL }}') return;
-
     document.querySelectorAll('.gallery').forEach(gallery => {
         const eventName = gallery.dataset.umamiEvent;
         let canTrack = true;
