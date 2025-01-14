@@ -13,6 +13,9 @@
     url: https://github.com/0000cd/wolf-set
   - name: 网站统计
     url: https://eu.umami.is/share/inDFetQGPNU7eUt4/ws.0000cd.com
+  media:
+  - url: https://player.bilibili.com/player.html?isOutside=true&aid=113680083655495&bvid=BV1oFkBY1EjF&cid=27425508078&p=1
+  - url: https://music.163.com/outchain/player?type=1&id=137470856
 
 - title: TGAGWCAGA
   hex: "#0583ab"
@@ -46,7 +49,6 @@
   - name: 三相奇谈
     url: https://store.steampowered.com/app/3084280/_/?l=schinese
   media: 
-  - url: https://player.bilibili.com/player.html?isOutside=true&aid=113309357447966&bvid=BV1ABmnYsEYu&autoplay=0
   - url: https://player.bilibili.com/player.html?isOutside=true&aid=113309357447966&bvid=BV1ABmnYsEYu&autoplay=0
 
 

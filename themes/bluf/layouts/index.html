@@ -262,46 +262,60 @@
 
 
 {{ with .Site.Params.confettiEmojis }}
-<script src="/js/js-confetti.js"></script>
 <script>
-    const jsConfetti = new JSConfetti();
-    function showConfetti() {
-        jsConfetti.addConfetti();
-        jsConfetti.addConfetti({
-            emojis: {{ . }},
-            emojiSize: 60,
-            confettiNumber: 30
-        });
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        // 动态加载 js-confetti 脚本
+        const script = document.createElement('script');
+        script.src = '/js/js-confetti.js';
+        script.onload = function() {
+          // js-confetti 加载完成后初始化
+          const jsConfetti = new JSConfetti();
+          
+          // 定义显示五彩纸屑的函数
+          window.showConfetti = function() {
+            jsConfetti.addConfetti();
+            jsConfetti.addConfetti({
+              emojis: {{ . }},
+              emojiSize: 60,
+              confettiNumber: 30
+            });
+          }
+        };
+        
+        document.head.appendChild(script);
+      });
 </script>
 {{ end }}
 
 
 {{ if .Site.Params.gallery }}
 <script>
-    // 动态加载 CSS
-    const linkElement = document.createElement('link');
-    linkElement.rel = 'stylesheet';
-    linkElement.href = 'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css';
-    document.head.appendChild(linkElement);
-
-    // 动态加载 JS
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js';
-    script.onload = () => {
-        // JS加载完成后初始化 GLightbox
-        const lightbox = GLightbox({
-            loop: true,
-        });
-
-        // 监听灯箱打开事件
-        lightbox.on('open', () => {
-            setTimeout(() => {
-                lightbox.nextSlide();
-            }, 500); // 延迟500毫秒后自动跳到下一页，可根据需求调整时间
-        });
-    };
-    document.head.appendChild(script);
+    document.addEventListener('DOMContentLoaded', function() {
+        // 动态加载 CSS
+        const linkElement = document.createElement('link');
+        linkElement.rel = 'stylesheet';
+        linkElement.href = 'css/glightbox.min.css';
+        document.head.appendChild(linkElement);
+    
+        // 动态加载 JS
+        const script = document.createElement('script');
+        script.src = 'js/glightbox.min.js';
+        script.onload = () => {
+            // JS加载完成后初始化 GLightbox
+            const lightbox = GLightbox({
+                loop: true,
+            });
+    
+            // 监听灯箱打开事件
+            lightbox.on('open', () => {
+                setTimeout(() => {
+                    lightbox.nextSlide();
+                }, 500); // 延迟500毫秒后自动跳到下一页，可根据需求调整时间
+            });
+        };
+        document.head.appendChild(script);
+    });
+    
 </script>
 {{ end }}
 
