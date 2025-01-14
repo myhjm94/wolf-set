@@ -1,4 +1,4 @@
-baseURL = "https://ws.0000cd.com/" #你的网址
+baseURL = "https://ws.0000cd.com/" #你的网址,以斜杠 / 结尾
 languageCode = "zh-CN"
 title = "狼牌网址导航 - 狼集 Wolf Set" #网站名称
 theme = "bluf"

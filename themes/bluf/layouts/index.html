@@ -302,7 +302,9 @@
 
 
 {{ if .Site.Params.gallery }}
+
 <script>
+
     document.addEventListener('DOMContentLoaded', function() {
         // 动态加载 CSS
         const linkElement = document.createElement('link');
@@ -319,17 +321,43 @@
                 loop: true,
             });
     
-            // 监听灯箱打开事件
+            
             lightbox.on('open', () => {
+                // 延迟500毫秒后自动跳到下一页
                 setTimeout(() => {
                     lightbox.nextSlide();
-                }, 500); // 延迟500毫秒后自动跳到下一页，可根据需求调整时间
+                }, 500);
             });
+            
         };
         document.head.appendChild(script);
     });
-    
+
+    {{ if eq hugo.Environment "production" }}
+    {{ if $.Site.Params.enableUmami }}
+
+    if (window.location.hostname !== '{{ .Site.BaseURL }}') return;
+
+    document.querySelectorAll('.gallery').forEach(gallery => {
+        const eventName = gallery.dataset.umamiEvent;
+        let canTrack = true;
+        
+        gallery.querySelectorAll('.glightbox').forEach(link => {
+            link.addEventListener('click', () => {
+                if (canTrack) {
+                    window.umami?.track(eventName);
+                    canTrack = false;
+                    setTimeout(() => canTrack = true, 3000);
+                }
+            });
+        });
+    });
+    {{ end }}
+    {{ end }}
+
+
 </script>
+
 {{ end }}
 
 
