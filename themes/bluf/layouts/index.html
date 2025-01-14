@@ -146,7 +146,7 @@
 
                                 {{/* 如果没有找到对应的画廊文件夹，则只显示单张图片 */}}
                                 {{ if not $matchedFolder }}
-                                <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-hidden="true"
+                                <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-label="{{ $title }}-img"
                                 {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
                                     <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                         height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
@@ -155,7 +155,7 @@
                                 {{ end }}
 
                             {{ else }}
-                            <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-hidden="true"
+                            <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-label="{{ $title }}-img"
                                 {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
                                 <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                     height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
