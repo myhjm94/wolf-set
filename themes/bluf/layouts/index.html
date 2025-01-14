@@ -34,7 +34,7 @@
                 {{ with .Site.Data.navbar.external_links }}
                 <div class="menu-container external_links">
                     {{ range . }}
-                    <a href="{{ .url }}" target="_blank" class="menu-toggle exlink" rel="noopener" 
+                    <a href="{{ .url | safeURL }}" target="_blank" class="menu-toggle exlink" rel="noopener" 
                         {{ if $.Site.Params.enableUmami }}data-umami-event="NAV-{{ .name }}" {{ end }}>
                         {{ .name }}
                     </a>
@@ -111,7 +111,7 @@
                                         {{ $folderName := $folder.Name }}
 
                                         <div class="gallery" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
-                                            <a href="{{ $image.RelPermalink }}" class="glightbox" data-gallery="gallery-{{ $title }}" id="cover" aria-label="{{ $title }}-cover">
+                                            <a href="{{ $image.RelPermalink | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" id="cover" aria-label="{{ $title }}-cover">
                                             <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                             height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                             onload="this.classList.add('loaded')" title="查看画廊">
@@ -124,7 +124,7 @@
                                             <a href="{{ .url | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
                                             {{ end }}
                                             {{ else }}
-                                            <a href="{{ $media }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                            <a href="{{ $media | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
                                             {{ end }}
                                             {{ end }}
 
@@ -137,7 +137,7 @@
                                                 {{- if in $extensions $galleryImageExt -}}
                                                     {{ $galleryImageResource := resources.Get (printf "gallery/%s/%s" $folderName $galleryImage.Name) }}
                                                     {{ $galleryImagePublicPath := printf "%s/%s/%s" $galleryPublicPath $folderName $galleryImage.Name }}
-                                                    <a href="{{ $galleryImageResource.RelPermalink }}" class="glightbox" data-gallery="gallery-{{ $title }}" data-caption="{{ $title }} - {{ $galleryImage.Name }}" style="display: none;"></a>
+                                                    <a href="{{ $galleryImageResource.RelPermalink | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" data-caption="{{ $title }} - {{ $galleryImage.Name }}" style="display: none;"></a>
                                                 {{- end -}}
                                             {{- end -}}
                                         </div>
@@ -193,7 +193,7 @@
                     </div>
 
                     {{ if reflect.IsSlice .links }}
-                    <a href="{{ (index .links 0).url }}" target="_blank" rel="noopener" 
+                    <a href="{{ (index .links 0).url | safeURL }}" target="_blank" rel="noopener" 
                         {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ .title }}" {{ end }}>
                         {{ else }}
                         <a href="{{ .links | safeURL }}" target="_blank" rel="noopener" 
@@ -208,7 +208,7 @@
                         {{ if gt (len .links) 1 }}
                         <nav class="grid-item-links">
                             {{ range after 1 .links }}
-                            <a href="{{ .url }}" target="_blank" rel="noopener" 
+                            <a href="{{ .url | safeURL }}" target="_blank" rel="noopener" 
                                 {{ if $.Site.Params.enableUmami}}data-umami-event="LINK-{{ $title }}-{{ .name }}" {{ end }}>
                                 {{ .name }}
                             </a>
