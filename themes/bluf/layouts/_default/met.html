@@ -24,7 +24,7 @@
                 width: 24px;
                 height: 24px;
                 border: 2px solid #f3f3f3;
-                border-top: 2px solid #0000cd;
+                border-top: 2px solid {{ .Site.Params.lightColor }};
                 border-radius: 50%;
                 animation: spin 1s linear infinite;
                 margin-left: 10px;
@@ -47,9 +47,9 @@
             const defaultConfig = {
                 server: 'netease',
                 type: 'album',
-                id: '250425200',
+                id: '137470856',
                 autoplay: 'true',
-                theme: '#0000cd',
+                theme: '{{ .Site.Params.lightColor }}',
                 loop: 'all',
                 order: 'random',
                 preload: 'auto',
