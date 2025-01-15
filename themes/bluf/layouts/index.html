@@ -144,8 +144,31 @@
                                     {{- end -}}
                                 {{ end }}
 
-                                {{/* 如果没有找到对应的画廊文件夹，则只显示单张图片 */}}
+                                {{/* 如果没有找到对应的画廊文件夹 */}}
                                 {{ if not $matchedFolder }}
+
+                                {{ if $media }}
+                                <div class="gallery" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
+                                    <a href="{{ $image.RelPermalink | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" id="cover" aria-label="{{ $title }}-cover">
+                                    <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                    height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                    onload="this.classList.add('loaded')" title="查看画廊">
+                                    <div class="cover-line" ></div>
+                                    </a>
+
+                                    
+                                    {{ if reflect.IsSlice $media }}
+                                    {{ range $media }}
+                                    <a href="{{ .url | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                    {{ end }}
+                                    {{ else }}
+                                    <a href="{{ $media | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                    {{ end }}
+                                </div>
+                                
+                                {{ else }}
+
+
                                 {{ if $link0 }}
                                 <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-label="{{ $title }}-img"
                                 {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
@@ -156,6 +179,9 @@
                                 {{ if $link0 }}
                                 </a>
                                 {{ end }}
+                                {{ end }}
+
+
                                 {{ end }}
 
                             {{ else }}
