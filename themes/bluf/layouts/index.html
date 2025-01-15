@@ -89,7 +89,7 @@
                 {{ $media := .media | default false }}
     
                 <div class="grid-item-head">
-                    {{ $extensions := slice "jpg" "jpeg" "png" "gif" "webp" }}
+                    {{ $extensions := slice "jpg" "jpeg" "png" "gif" "webp" "mp4" "webm" }}
                     {{ $galleryPath := "assets/gallery" }}
                     {{ $galleryPublicPath := "gallery" }}  
                     {{ $folders := readDir $galleryPath }}
@@ -149,7 +149,7 @@
                                                        style="display: none;"></a>
                                                 {{- end -}}
                                             {{- end -}}
-                                            
+
                                         </div>
                                     {{- end -}}
                                 {{ end }}
