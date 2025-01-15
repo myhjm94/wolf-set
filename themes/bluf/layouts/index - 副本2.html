@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+    {{ partial "head.html" . }}
+    
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Params.description }}" />
+    <meta name="keywords" content="{{ range .Site.Params.keywords }}{{ . }},{{ end }}" />
+
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-title">
+                <a href="{{ .Site.BaseURL }}">
+                    <img class="top-bar-logo" src="/logo.webp" alt="Logo">
+                </a>
+                <h1 class="top-title" style="font-size: 1em;">{{ .Site.Params.pagename }}</h1>
+                <noscript>{{ .Site.Params.alias }}</noscript>
+            </div>
+
+            <nav class="top-bar-nav">
+
+                <div class="menu-container">
+                    <button class="theme-toggle" id="themeToggle" title="切换深浅配色">
+                        深色模式
+                    </button>
+                </div>
+                
+
+                {{ with .Site.Data.navbar.external_links }}
+                <div class="menu-container external_links">
+                    {{ range . }}
+                    <a href="{{ .url | safeURL }}" target="_blank" class="menu-toggle exlink" rel="noopener" 
+                        {{ if $.Site.Params.enableUmami }}data-umami-event="NAV-{{ .name }}" {{ end }}>
+                        {{ .name }}
+                    </a>
+                    {{ end }}
+                </div>
+                {{ end }}
+
+                {{ range .Site.Data.navbar.categories }}
+                <div class="menu-container categories">
+                    <div class="menu-toggle" id="menu-toggle-{{ .id }}">{{ .name }}</div>
+                    <div class="nav-button filter-button-group" id="filter-group-{{ .id }}">
+                        {{ range .tags }}
+                        <button class="menu-toggle-btn filter-btn" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ . }}</button>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+
+
+                {{ with .Site.Data.navbar.hot_tags }}
+                <div class="hot-tags-container filter-button-group">
+                    {{ range . }}
+                    <button class="hot-tag filter-btn" data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ . }}</button>
+                    {{ end }}
+                </div>
+                {{ end }}
+                
+            </nav>
+            
+        </div>
+    </div>
+
+    <div class="grid" id="myGrid">
+        {{ range $index, $element := .Site.Data.cards }}
+        {{ $title := .title }}
+        <article id="{{ .title }}">
+            <div class="grid-item {{ range .tags }}{{ index $.Site.Data.tag_classes . }} {{ end }}
+                {{- with .hex -}}
+                {{ partial "getColorCategory" . }}
+                {{- end -}}">
+
+                {{/* 处理链接变量 */}}
+                {{ $link0 := false }}
+                {{ with .links }}
+                    {{ if reflect.IsSlice . }}
+                        {{ $link0 = (index . 0).url | safeURL }}
+                    {{ else }}
+                        {{ $link0 = . | safeURL }}
+                    {{ end }}
+                {{ end }}                        
+
+                {{ $media := .media | default false }}
+
+                        <div class="grid-item-head">
+                            {{ $extensions := slice "jpg" "jpeg" "png" "gif" "webp" }}
+                            {{ $galleryPath := "assets/gallery" }}
+                            {{ $galleryPublicPath := "gallery" }}  
+                            {{ $folders := readDir $galleryPath }}
+
+                            {{ range $ext := $extensions }}
+                            {{ $imgPath := printf "img/%s.%s" $title $ext }}
+                            {{ if (resources.Get $imgPath) }}
+                            {{ $image := resources.Get $imgPath }}
+                            {{ $displayWidth := 255 }}
+                            {{ $ratio := div (float $image.Height) $image.Width }}
+                            {{ $displayHeight := math.Round (mul $displayWidth $ratio) }}
+
+                            {{ if $.Site.Params.gallery }}
+                                {{/* 查找是否存在对应的画廊文件夹 */}}
+                                {{ $matchedFolder := false }}
+                                {{ range $folder := $folders }}
+                                    {{- if and $folder.IsDir (eq (lower $folder.Name) (lower $title)) -}}
+                                        {{ $matchedFolder = true }}
+                                        {{ $folderName := $folder.Name }}
+
+                                        <div class="gallery" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
+                                            <a href="{{ $image.RelPermalink | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" id="cover" aria-label="{{ $title }}-cover">
+                                            <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                            height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                            onload="this.classList.add('loaded')" title="查看画廊">
+                                            <div class="cover-line" ></div>
+                                            </a>
+
+                                            {{ if $media }}
+                                            {{ if reflect.IsSlice $media }}
+                                            {{ range $media }}
+                                            <a href="{{ .url | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                            {{ end }}
+                                            {{ else }}
+                                            <a href="{{ $media | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                            {{ end }}
+                                            {{ end }}
+
+                                            {{ $galleryImagesPath := printf "%s/%s" $galleryPath $folderName }}
+                                            {{ $galleryImageFiles := readDir $galleryImagesPath }}
+
+                                            {{- range $galleryImage := $galleryImageFiles -}}
+                                                {{- $galleryImageExt := path.Ext $galleryImage.Name -}}
+                                                {{- $galleryImageExt := strings.TrimPrefix "." $galleryImageExt -}}
+                                                {{- if in $extensions $galleryImageExt -}}
+                                                    {{ $galleryImageResource := resources.Get (printf "gallery/%s/%s" $folderName $galleryImage.Name) }}
+                                                    {{ $galleryImagePublicPath := printf "%s/%s/%s" $galleryPublicPath $folderName $galleryImage.Name }}
+                                                    <a href="{{ $galleryImageResource.RelPermalink | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" data-caption="{{ $title }} - {{ $galleryImage.Name }}" style="display: none;"></a>
+                                                {{- end -}}
+                                            {{- end -}}
+                                        </div>
+                                    {{- end -}}
+                                {{ end }}
+
+                                {{/* 如果没有找到对应的画廊文件夹 */}}
+                                {{ if not $matchedFolder }}
+
+                                {{ if $media }}
+                                <div class="gallery" {{ if $.Site.Params.enableUmami}}data-umami-event="GALLERY-{{ $title }}" {{ end }}>
+                                    <a href="{{ $image.RelPermalink | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" id="cover" aria-label="{{ $title }}-cover">
+                                    <img class="grid-item-img cover-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                    height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                    onload="this.classList.add('loaded')" title="查看画廊">
+                                    <div class="cover-line" ></div>
+                                    </a>
+
+                                    
+                                    {{ if reflect.IsSlice $media }}
+                                    {{ range $media }}
+                                    <a href="{{ .url | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                    {{ end }}
+                                    {{ else }}
+                                    <a href="{{ $media | safeURL }}" class="glightbox" data-gallery="gallery-{{ $title }}" style="display: none;"></a>
+                                    {{ end }}
+                                </div>
+                                
+                                {{ else }}
+
+
+                                {{ if $link0 }}
+                                <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-label="{{ $title }}-img"
+                                {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
+                                {{ end }}
+                                    <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                        height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                        onload="this.classList.add('loaded')">
+                                {{ if $link0 }}
+                                </a>
+                                {{ end }}
+                                {{ end }}
+
+
+                                {{ end }}
+
+                            {{ else }}
+                            {{ if $link0 }}
+                            <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-label="{{ $title }}-img"
+                                {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
+                            {{ end }}
+                                <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
+                                    height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
+                                    onload="this.classList.add('loaded')">
+                            {{ if $link0 }}
+                                </a>
+                            {{ end }}
+                            {{ end }}
+
+                            {{ break }}
+                            {{ end }}
+                            {{ end }}
+
+                            {{ if $link0 }}
+                            <a href="{{ $link0 }}" target="_blank" rel="noopener"
+                                {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
+                            {{ end }}
+
+                            <header  class="grid-item-header">
+                                <h2 class="grid-item-title">{{ .title }}</h2>
+                                <div class="grid-item-color-mark" 
+                                    style="background:{{ if eq (substr .hex 0 1) "#" }}{{ .hex }}{{ else }}#{{ .hex }}{{ end }};">
+                                </div>
+                            </header>
+                            
+                            {{ if $link0 }}
+                            </a>
+                            {{ end }}
+
+                        </div>
+                    
+
+                    <div class="grid-item-middle">
+                        <div class="grid-item-tags filter-button-group">
+                            {{ range .tags }}
+                            <button class="filter-btn grid-item-tag"
+                                data-filter=".{{ index $.Site.Data.tag_classes . }}">{{ . }}</button>
+                            {{ end }}
+                        </div>
+                        <div class="grid-item-date" datetime="{{ .date }}">{{ .date }}</div>
+                    </div>
+
+                    {{ if $link0 }}
+                    <a href="{{ $link0 }}" target="_blank" rel="noopener"
+                                {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
+                    {{ end }}
+
+                            <section class="grid-item-description">
+                                <p>{{ .description }}</p>
+                            </section>
+
+                    {{ if $link0 }}
+                        </a>
+                    {{ end }}
+
+                        {{ if reflect.IsSlice .links }}
+                        {{ if gt (len .links) 1 }}
+                        <nav class="grid-item-links">
+                            {{ range after 1 .links }}
+                            <a href="{{ .url | safeURL }}" target="_blank" rel="noopener" 
+                                {{ if $.Site.Params.enableUmami}}data-umami-event="LINK-{{ $title }}-{{ .name }}" {{ end }}>
+                                {{ .name }}
+                            </a>
+                            {{ end }}
+                        </nav>
+                        {{ end }}
+                        {{ end }}
+            </div>
+        </article>
+        {{ end }}
+    </div>
+
+    <button id="reset-filters" onclick="showConfetti()">✕</button>
+
+    <script src="/js/isotope.min.js"></script>
+
+    {{ $js := resources.Get "js/script.new.js" }}
+    {{ $secureJS := $js | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+    <script>
+        window.addEventListener('load', function() {
+          document.getElementById('myGrid').classList.add('show');
+        });
+    </script>
+
+    {{ if .Site.Params.greetings }}
+
+    <div class="greeting-widget">
+        <div class="avatar">
+            <img src="/avatar.webp" alt="Avatar">
+        </div>
+        <div class="message">
+            <span id="random-greeting"></span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const greetings = {{ .Site.Params.greetings }};
+            const mobileGreetings = {{ .Site.Params.mobileGreetings | default .Site.Params.greetings }};
+            const widget = document.querySelector('.greeting-widget');
+            const greetingEl = document.getElementById('random-greeting');
+            
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const greetingArray = isMobile ? mobileGreetings : greetings;
+            
+            const randomIndex = Math.floor(Math.random() * greetingArray.length);
+            greetingEl.textContent = greetingArray[randomIndex];
+            
+            setTimeout(() => {
+                widget.classList.add('show');
+            }, 500);
+        
+            setTimeout(() => {
+                widget.classList.remove('show');
+            }, 3500);
+        });
+        </script>
+
+    {{ partial "footer.html" . }}
+
+{{ end }}
+
+
+{{ with .Site.Params.confettiEmojis }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 动态加载 js-confetti 脚本
+        const script = document.createElement('script');
+        script.src = '/js/js-confetti.js';
+        script.onload = function() {
+          // js-confetti 加载完成后初始化
+          const jsConfetti = new JSConfetti();
+          
+          // 定义显示五彩纸屑的函数
+          window.showConfetti = function() {
+            jsConfetti.addConfetti();
+            jsConfetti.addConfetti({
+              emojis: {{ . }},
+              emojiSize: 60,
+              confettiNumber: 30
+            });
+          }
+        };
+        
+        document.head.appendChild(script);
+      });
+</script>
+{{ end }}
+
+
+{{ if .Site.Params.gallery }}
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // 动态加载 CSS
+        const linkElement = document.createElement('link');
+        linkElement.rel = 'stylesheet';
+        linkElement.href = '/css/glightbox.min.css';
+        document.head.appendChild(linkElement);
+    
+        // 动态加载 JS
+        const script = document.createElement('script');
+        script.src = '/js/glightbox.min.js';
+        script.onload = () => {
+            // JS加载完成后初始化 GLightbox
+            const lightbox = GLightbox({
+                loop: true,
+            });
+    
+            
+            lightbox.on('open', () => {
+                // 延迟500毫秒后自动跳到下一页
+                setTimeout(() => {
+                    lightbox.nextSlide();
+                }, 500);
+            });
+            
+        };
+        document.head.appendChild(script);
+    });
+
+    {{ if eq hugo.Environment "production" }}
+    {{ if $.Site.Params.enableUmami }}
+
+    document.querySelectorAll('.gallery').forEach(gallery => {
+        const eventName = gallery.dataset.umamiEvent;
+        let canTrack = true;
+        
+        gallery.querySelectorAll('.glightbox').forEach(link => {
+            link.addEventListener('click', () => {
+                if (canTrack) {
+                    window.umami?.track(eventName);
+                    canTrack = false;
+                    setTimeout(() => canTrack = true, 3000);
+                }
+            });
+        });
+    });
+    {{ end }}
+    {{ end }}
+
+
+</script>
+
+{{ end }}
+
+
+</body>
+
+</html>
