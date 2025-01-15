@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Meting Music</title>
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="stylesheet" href="/css/APlayer.min.css">
+        <script src="/js/APlayer.min.js"></script>
+        <script src="/js/Meting.min.js"></script>
+        <style>
+            body {
+                background-color: #020202;
+            }
+            .aplayer {
+                margin: 0px;
+            }
+            .loading {
+                text-align: center;
+                padding: 10px;
+            }
+            .loading::after {
+                content: "";
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                border: 2px solid #f3f3f3;
+                border-top: 2px solid #0000cd;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                margin-left: 10px;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            .hide {
+                display: none !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="player-container">
+            <div id="loading" class="loading"></div>
+        </div>
+
+        <script>
+            const defaultConfig = {
+                server: 'netease',
+                type: 'album',
+                id: '250425200',
+                autoplay: 'true',
+                theme: '#0000cd',
+                loop: 'all',
+                order: 'random',
+                preload: 'auto',
+                'list-max-height': '400px'
+            };
+
+            function createPlayer() {
+                const metingJs = document.createElement('meting-js');
+                const params = new URLSearchParams(window.location.search);
+                
+                Object.keys(defaultConfig).forEach(key => {
+                    metingJs.setAttribute(key, params.get(key) || defaultConfig[key]);
+                });
+
+                document.getElementById('player-container').appendChild(metingJs);
+
+                new MutationObserver((mutations, obs) => {
+                    const aplayer = document.querySelector('.aplayer');
+                    if (aplayer?.classList.contains('aplayer-withlist')) {
+                        document.getElementById('loading').classList.add('hide');
+                        obs.disconnect();
+                    }
+                }).observe(document.getElementById('player-container'), {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['class']
+                });
+            }
+
+            window.addEventListener('load', createPlayer);
+        </script>
+    </body>
+</html>

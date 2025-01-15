@@ -239,7 +239,7 @@
 
     <div class="greeting-widget">
         <div class="avatar">
-            <img src="avatar.webp" alt="Avatar">
+            <img src="/avatar.webp" alt="Avatar">
         </div>
         <div class="message">
             <span id="random-greeting"></span>
@@ -279,7 +279,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // 动态加载 js-confetti 脚本
         const script = document.createElement('script');
-        script.src = 'js/js-confetti.js';
+        script.src = '/js/js-confetti.js';
         script.onload = function() {
           // js-confetti 加载完成后初始化
           const jsConfetti = new JSConfetti();
@@ -309,12 +309,12 @@
         // 动态加载 CSS
         const linkElement = document.createElement('link');
         linkElement.rel = 'stylesheet';
-        linkElement.href = 'css/glightbox.min.css';
+        linkElement.href = '/css/glightbox.min.css';
         document.head.appendChild(linkElement);
     
         // 动态加载 JS
         const script = document.createElement('script');
-        script.src = 'js/glightbox.min.js';
+        script.src = '/js/glightbox.min.js';
         script.onload = () => {
             // JS加载完成后初始化 GLightbox
             const lightbox = GLightbox({
