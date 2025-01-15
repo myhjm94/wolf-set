@@ -31,7 +31,7 @@ theme = "bluf"
   lightColor = "#0000cd" # 浅色强调色，推荐较深
   darkColor = "#fafafa" # 深色强调色，推荐较浅
 
-  gallery = true #启用相册模式
+  gallery = true #启用画廊模式
 
   greetings = [
     "你好朋友，你好世界 🎉",

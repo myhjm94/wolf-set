@@ -146,30 +146,39 @@
 
                                 {{/* 如果没有找到对应的画廊文件夹，则只显示单张图片 */}}
                                 {{ if not $matchedFolder }}
+                                {{ if $link0 }}
                                 <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-label="{{ $title }}-img"
                                 {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
+                                {{ end }}
                                     <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                         height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                         onload="this.classList.add('loaded')">
+                                {{ if $link0 }}
                                 </a>
+                                {{ end }}
                                 {{ end }}
 
                             {{ else }}
+                            {{ if $link0 }}
                             <a href="{{ $link0 }}" target="_blank" rel="noopener" aria-label="{{ $title }}-img"
                                 {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
+                            {{ end }}
                                 <img class="grid-item-img" src="{{ $image.RelPermalink }}" width="{{ $displayWidth }}"
                                     height="{{ $displayHeight }}" alt="" {{ if ge $index 10 }}loading="lazy" {{ end }}
                                     onload="this.classList.add('loaded')">
+                            {{ if $link0 }}
                                 </a>
+                            {{ end }}
                             {{ end }}
 
                             {{ break }}
                             {{ end }}
                             {{ end }}
 
-                            <a href="{{ $link0 }}" target="_blank" rel="noopener" 
+                            {{ if $link0 }}
+                            <a href="{{ $link0 }}" target="_blank" rel="noopener"
                                 {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
-
+                            {{ end }}
 
                             <header  class="grid-item-header">
                                 <h2 class="grid-item-title">{{ .title }}</h2>
@@ -177,7 +186,10 @@
                                     style="background:{{ if eq (substr .hex 0 1) "#" }}{{ .hex }}{{ else }}#{{ .hex }}{{ end }};">
                                 </div>
                             </header>
+                            
+                            {{ if $link0 }}
                             </a>
+                            {{ end }}
 
                         </div>
                     
@@ -192,17 +204,18 @@
                         <div class="grid-item-date" datetime="{{ .date }}">{{ .date }}</div>
                     </div>
 
-                    {{ if reflect.IsSlice .links }}
-                    <a href="{{ (index .links 0).url | safeURL }}" target="_blank" rel="noopener" 
-                        {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ .title }}" {{ end }}>
-                        {{ else }}
-                        <a href="{{ .links | safeURL }}" target="_blank" rel="noopener" 
-                            {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ .title }}" {{ end }}>
-                            {{ end }}
+                    {{ if $link0 }}
+                    <a href="{{ $link0 }}" target="_blank" rel="noopener"
+                                {{ if $.Site.Params.enableUmami}}data-umami-event="CARD-{{ $title }}" {{ end }}>
+                    {{ end }}
+
                             <section class="grid-item-description">
                                 <p>{{ .description }}</p>
                             </section>
+
+                    {{ if $link0 }}
                         </a>
+                    {{ end }}
 
                         {{ if reflect.IsSlice .links }}
                         {{ if gt (len .links) 1 }}
