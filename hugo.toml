@@ -1,11 +1,11 @@
-baseURL = "https://ws.0000cd.com/" #你的网址,以斜杠 / 结尾
+baseURL = "" #你的网址,以斜杠 / 结尾
 languageCode = "zh-CN"
-title = "狼牌网址导航 - 狼集 Wolf Set" #网站名称
+title = "Marx's Favourite" #网站名称
 theme = "bluf"
 
 [params]
-  pagename = "狼集 Wolf Set" #首页标题
-  description = " 狼集 Wolf Set, 源自“狼牌工作网址导航”，集设计、Markdown、软件、安全、办公必备网址于一体，All in One 最佳选择。" #SEO，你的网站描述
+  pagename = "Marx's Favourite" #首页标题
+  description = "Marx的私人网络博物馆" #SEO，你的网站描述
   keywords = [
   "狼集",
   "Wolf Set",
@@ -20,13 +20,13 @@ theme = "bluf"
   "安全工具",
   "All in One"
 ] #SEO，网站关键词
-  author = "0000CD.COM & 逊狼" #SEO，网站作者
-  alias ="狼牌网址导航" #SEO，可删除
-  license="CC BY-NC 4.0" #网站授权信息，https://chooser-beta.creativecommons.org/
+  author = "Marx" #SEO，网站作者
+  alias ="Marx网址导航" #SEO，可删除
+  #license="CC BY-NC 4.0" #网站授权信息，https://chooser-beta.creativecommons.org/
 
-  enableUmami = true #umami 统计相关，没有请 false，https://umami.is/
-  UmamiLink = "https://eu.umami.is/script.js"
-  UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
+  enableUmami = False #umami 统计相关，没有请 false，https://umami.is/
+  # UmamiLink = "https://eu.umami.is/script.js"
+  # UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
 
   lightColor = "#0000cd" # 浅色强调色，推荐较深
   darkColor = "#fafafa" # 深色强调色，推荐较浅
