@@ -1,4 +1,4 @@
-baseURL = "https://marx-oqv.pages.dev/" #你的网址,以斜杠 / 结尾
+baseURL = "https://819179a1.marx-oqv.pages.dev" #你的网址,以斜杠 / 结尾
 languageCode = "zh-CN"
 title = "Marx's Favourite" #网站名称
 theme = "bluf"
