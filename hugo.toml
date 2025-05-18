@@ -1,4 +1,4 @@
-baseURL = "" #你的网址,以斜杠 / 结尾
+baseURL = "https://marx-oqv.pages.dev/" #你的网址,以斜杠 / 结尾
 languageCode = "zh-CN"
 title = "Marx's Favourite" #网站名称
 theme = "bluf"
@@ -25,8 +25,8 @@ theme = "bluf"
   license="CC BY-NC 4.0" #网站授权信息，https://chooser-beta.creativecommons.org/
 
   enableUmami = false #umami 统计相关，没有请 false，https://umami.is/
-  UmamiLink = "https://eu.umami.is/script.js"
-  UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
+  # UmamiLink = "https://eu.umami.is/script.js"
+  # UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
 
   lightColor = "#0000cd" # 浅色强调色，推荐较深
   darkColor = "#fafafa" # 深色强调色，推荐较浅
