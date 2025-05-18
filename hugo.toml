@@ -24,7 +24,7 @@ theme = "bluf"
   alias ="Marx网址导航" #SEO，可删除
   #license="CC BY-NC 4.0" #网站授权信息，https://chooser-beta.creativecommons.org/
 
-  enableUmami = False #umami 统计相关，没有请 false，https://umami.is/
+  # enableUmami = False #umami 统计相关，没有请 false，https://umami.is/
   # UmamiLink = "https://eu.umami.is/script.js"
   # UmamiID = "02cc419c-d758-4a4f-a9bd-1e442b1f8435"
 
